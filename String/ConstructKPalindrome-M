@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/construct-k-palindrome-strings/
+//https://leetcode.com/problems/construct-k-palindrome-strings/discuss/563379/JavaC%2B%2BPython-Straight-Forward
+//if there are n(3) character with odd count(aaa,bbb,ccc) there will be minimum n(3) palindrome in that string(aabbccabc) 
+class Solution {
+    public boolean canConstruct(String s, int k) {
+         int odd = 0, n = s.length(), count[] = new int[26];
+        for (int i = 0; i < n; ++i) {
+            count[s.charAt(i) - 'a'] ^= 1;
+            odd += count[s.charAt(i) - 'a'] > 0 ? 1 : -1;
+        }
+        System.out.println(odd);
+        return odd <= k && k <= n;
+    }
+}
