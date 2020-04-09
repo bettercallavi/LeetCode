@@ -1,0 +1,71 @@
+//https://leetcode.com/problems/rotting-oranges/submissions/
+
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int count=0;
+        Queue<Ele> queue=new LinkedList<>();
+        int r=grid.length;
+        int c=grid[0].length;
+     for(int i=0;i<r;i++){
+          for(int j=0;j<c;j++){
+              if(grid[i][j]==2)queue.add(new Ele(i,j));
+          }     
+     } 
+        queue.add(new Ele(-1,-1));
+  while(!queue.isEmpty()){
+      Ele e=queue.poll();
+      if(e.x==-1 && e.y==-1){
+          count++;
+              if (!queue.isEmpty()) 
+			{ 
+				queue.add(new Ele(-1,-1));
+			}
+       continue;
+      }
+                     if(isValid(e.x+1,e.y,r,c) && grid[e.x+1][e.y]==1){
+                        grid[e.x+1][e.y]=2;
+                         queue.add(new Ele(e.x+1,e.y));
+                        } 
+                     if(isValid(e.x-1,e.y,r,c) && grid[e.x-1][e.y]==1){
+                         grid[e.x-1][e.y]=2;
+                         queue.add(new Ele(e.x-1,e.y));
+                        }
+                     if(isValid(e.x,e.y+1,r,c) && grid[e.x][e.y+1]==1){
+                         grid[e.x][e.y+1]=2;
+                         queue.add(new Ele(e.x,e.y+1));
+                        }
+                      if(isValid(e.x,e.y-1,r,c) && grid[e.x][e.y-1]==1){
+                         grid[e.x][e.y-1]=2;
+                         queue.add(new Ele(e.x,e.y-1));
+                        }      
+      }
+  if(checkAll(grid,r,c))   
+  return -1;
+  else
+  return count-1;
+ }
+   
+    boolean isValid(int x,int y,int r,int c){
+    if(0<=x && x<r && 0<=y && y<c) 
+    return true;
+    else 
+    return false;
+  }  
+    
+    boolean checkAll(int arr[][],int r,int c) 
+	{ 
+		for (int i=0; i<r; i++) 
+			for (int j=0; j<c; j++) 
+				if (arr[i][j] == 1) 
+					return true; 
+		return false; 
+	}  
+  class Ele{
+        int x;
+        int y;
+        Ele(int x,int y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+}
