@@ -18,7 +18,7 @@ class Solution {
     return count;     
     }
 }
-//...................................better approach...................................................................
+//...................................better approach............must have a look .......................................................
 class Solution {
     public int numTeams(int[] rating) {
         int n = rating.length, res = 0;
