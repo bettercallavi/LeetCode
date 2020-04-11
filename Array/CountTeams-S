@@ -18,3 +18,25 @@ class Solution {
     return count;     
     }
 }
+//...................................better approach...................................................................
+class Solution {
+    public int numTeams(int[] rating) {
+        int n = rating.length, res = 0;
+        for (int i = 1; i < n - 1; i++) {
+            int leftSmaller = 0, leftGreater = 0;
+            for (int j = 0; j < i; j++) {
+                if (rating[j] < rating[i]) leftSmaller++;
+                else if (rating[j] > rating[i]) leftGreater++;
+            }
+
+            int rightSmaller = 0, rightGreater = 0;
+            for (int j = i + 1; j < n; j++) {
+                if (rating[j] < rating[i]) rightSmaller++;
+                else if (rating[j] > rating[i]) rightGreater++;
+            }
+
+            res += leftSmaller * rightGreater + leftGreater * rightSmaller;
+        }
+        return res;
+    }
+}
