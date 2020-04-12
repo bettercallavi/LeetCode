@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/
+
+class Solution {
+    int sum=0;
+    public int sumEvenGrandparent(TreeNode root) {
+        tree(root,-1,-1,root.val%2==0? 2:0);
+      return sum;  
+    }
+    
+  void  tree(TreeNode node,int gp,int p,int c){
+        if(node==null)
+            return ;
+        if(gp==0)sum+=node.val; 
+        if(node.left!=null)tree(node.left,p-1,c-1,node.left.val%2==0?2:-1);
+       if(node.right!=null)tree(node.right,p-1,c-1,node.right.val%2==0?2:-1);
+  }
+}
+
+........................................other way with same time complexity...................
+
+class Solution {
+   int sum = 0;
+public int sumEvenGrandparent(TreeNode root) {
+if (root == null){
+return 0;
+}
+preOrder(root);
+return sum;
+}
+void preOrder(TreeNode root){
+    if (root == null){
+        return;
+    }
+    if (root.val % 2 == 0){
+        if (root.left != null &&root.left.left != null){sum += root.left.left.val;}
+        if (root.left != null &&root.left.right != null){sum += root.left.right.val;}
+        if (root.right != null &&root.right.left != null){sum += root.right.left.val;}
+        if (root.right != null &&root.right.right != null){sum += root.right.right.val;}
+
+    }
+    preOrder(root.left);
+    preOrder(root.right);
+}
+}
