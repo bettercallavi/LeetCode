@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/letter-tile-possibilities/
+//https://github.com/mission-peace/interview/edit/master/src/com/interview/recursion/Combination.java
+//https://www.youtube.com/watch?v=xTNFs5KRV_g
+
+class Solution {
+    public int possibilities = -1;
+
+public int numTilePossibilities(String tiles) {
+	Map<Character, Integer> map = new HashMap<>();
+	for (char tile : tiles.toCharArray())
+		map.put(tile, map.getOrDefault(tile, 0) + 1);
+	gen(map.values().toArray(new Integer[map.size()]));
+	return possibilities;
+}
+
+private void gen(Integer[] freq) {
+	possibilities += 1;
+	for (int i = 0; i < freq.length; i++)
+		if (freq[i] > 0) {
+			freq[i] -= 1;
+			gen(freq);
+			freq[i] += 1;
+		}
+     }
+}
