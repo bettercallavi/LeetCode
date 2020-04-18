@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/score-after-flipping-matrix/
+
+class Solution {
+    public int matrixScore(int[][] A) {
+        int c=A[0].length;
+        int r=A.length;
+        int result=0;
+        
+        for(int i=0;i<c;i++){
+            int ones=0;
+            for(int j=0;j<r;j++){
+              if(i==0 && A[j][i] == 0)fliprows(A,j);////Flip to ensure that the most significant bit is one
+             if(A[j][i]==1)ones++;
+            } 
+            ones = Math.max(ones,A.length-ones);//// finding the maximum number of ones in each column
+            //left sift gives us multiplication of that number with power of 2
+            result+=(1<<(c-i-1))*ones;   ///caculate numeric from binary column wise 
+        }
+        return result;
+    }
+    void fliprows(int[][]  A,int i){
+        for(int j=0;j<A[0].length;j++)
+         A[i][j]^=1;  
+    }
+}
