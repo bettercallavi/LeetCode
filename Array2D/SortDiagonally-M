@@ -21,3 +21,35 @@ class Solution {
         }
     }
 }
+//...........................better approch ,use array instead of list ,no need to sort ..........................
+
+class Solution {
+    public int[][] diagonalSort(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+        for(int i = 1; i < n; i++) {
+            helper(mat, m - 1, i);
+        }
+        for(int i = 1; i < m - 1; i++) {
+            helper(mat, i, n - 1);
+        }
+        return mat;
+    }
+    
+    private void helper(int[][] mat, int xStart, int yStart) {
+        int[] bucket = new int[101];
+        for(int x = xStart, y = yStart; x >= 0 && y >= 0; x--, y--) {
+            int val = mat[x][y];
+            bucket[val]++;
+        }
+        int val = 100;
+        System.out.println(Arrays.toString(bucket));
+        for(int x = xStart, y = yStart; x >= 0 && y >= 0; x--, y--) {
+            while(bucket[val] == 0) {
+                val--;
+            }
+            mat[x][y] = val;
+            bucket[val]--;
+        }
+    }
+}
