@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/sort-the-matrix-diagonally/
-
+//.....................................not good approch............................
 class Solution {
     public int[][] diagonalSort(int[][] mat) {
         int m=mat.length,n=mat[0].length;
@@ -27,10 +27,10 @@ class Solution {
     public int[][] diagonalSort(int[][] mat) {
         int m = mat.length;
         int n = mat[0].length;
-        for(int i = 1; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             helper(mat, m - 1, i);
         }
-        for(int i = 1; i < m - 1; i++) {
+        for(int i = 0; i < m - 1; i++) {
             helper(mat, i, n - 1);
         }
         return mat;
@@ -43,9 +43,8 @@ class Solution {
             bucket[val]++;
         }
         int val = 100;
-        System.out.println(Arrays.toString(bucket));
         for(int x = xStart, y = yStart; x >= 0 && y >= 0; x--, y--) {
-            while(bucket[val] == 0) {
+            while(bucket[val] <= 0) {
                 val--;
             }
             mat[x][y] = val;
