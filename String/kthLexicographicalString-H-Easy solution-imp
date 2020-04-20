@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/
+
+
+
+class Solution {
+    private static final char[] CHARS = new char[] { 'a', 'b', 'c' };
+    public String getHappyString(int n, int k) {
+        StringBuilder sb=new StringBuilder();
+        build(n,'&',k,sb); //// first we have fake `-` as parameter, so all `a`, `b` and `c` are valid as a first letter
+      return  sb.toString();
+    }
+     void  build(int n,char last,int k,StringBuilder sb){
+         if(n==0)// we have reached the leaf
+             return;
+         int step=1<<(n-1);
+         int to=step; 
+         for(char c:CHARS){
+             if(c==last)continue;// we can't have two same letters in row
+                  if(k<=to){
+            build(n-1,c,k-(to-step),sb.append(c));// get the child tree and deduct the number of elements in                                     //left branch from k, if `to` is the right boundary of current branch, then                                      //(to-step) is the right boundary of the left branch, which is the number of                                  //all elements in it
+                      return;
+        }       
+        else
+          to+=step;;
+         }
+     }
+}
