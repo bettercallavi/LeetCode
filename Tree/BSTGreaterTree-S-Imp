@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/
+
+class Solution {
+    int value=0;
+    public TreeNode bstToGst(TreeNode root) {
+     if (root!=null)
+       bst(root);
+        return root;
+    }
+    void bst(TreeNode node){
+        if(node==null)
+            return ;
+        bst(node.right);
+        value+=node.val;
+        node.val=value;
+        bst(node.left);
+    }
+}
