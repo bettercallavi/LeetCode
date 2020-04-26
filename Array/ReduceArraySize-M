@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/reduce-array-size-to-the-half/
+
+import java.util.Arrays; 
+import java.util.Collections; 
+class Solution {
+    public int minSetSize(int[] arr) {
+       PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->(b-a));
+       int count[]=new int[1_000_01];
+       for(int a : arr) count[a]++;
+        for(int i=0;i<1_000_01;i++)
+           if(count[i] > 0) pq.offer(count[i]);
+       int res=0,total=0;
+        while(total<arr.length/2){
+            res++;
+            total+=pq.poll();
+        }
+        return res;
+   }
+}
