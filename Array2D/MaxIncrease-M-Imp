@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/max-increase-to-keep-city-skyline/
+//........................naive solution............................................
+class Solution {
+    public int maxIncreaseKeepingSkyline(int[][] g) {
+        int h=0;
+        for(int i=0;i<g.length;i++){
+            for(int j=0;j<g[0].length;j++){
+                h+=getIncrease(i,j,g)-g[i][j];
+            }
+        }
+        return h;
+    }
+    int getIncrease(int r,int c,int[][] g){
+        int rowMax=Integer.MIN_VALUE;
+        int clmMax=Integer.MIN_VALUE;
+            for(int i=0;i<g[0].length;i++){
+                  rowMax=Math.max(rowMax,g[r][i]); 
+            }
+            for(int j=0;j<g.length;j++){
+                 clmMax=Math.max(clmMax,g[j][c]);    
+            }
+        return Math.min(rowMax,clmMax);
+    }
+}
+//..............................better solution........................................
+class Solution {
+public int maxIncreaseKeepingSkyline(int[][] grid) {
+
+    //for storing max of rows and cols ([0]-rows [1]-cols)
+    int threshold[][] = new int[2][grid.length]; 
+    
+    int answer = 0;
+    
+	//double loop to record max in each row and col
+    for(int i = 0; i < grid.length; i++) {
+         for(int j = 0; j < grid[i].length; j++) {
+             threshold[0][i] = Math.max(threshold[0][i], grid[i][j]);
+             threshold[1][j] = Math.max(threshold[1][j], grid[i][j]);
+         }
+    }
+
+    
+	//adding difference of minimum of both to final answer as we have to keep skyline unchanged
+    for(int i = 0; i < grid.length; i++) {
+         for(int j = 0; j < grid[i].length; j++) {
+             answer += Math.min(threshold[0][i], threshold[1][j]) - grid[i][j];
+         }
+    }
+    
+    return answer;
+}
+}
