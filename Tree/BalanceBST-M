@@ -14,7 +14,7 @@ class Solution {
          inorder(list,node.right); 
      }
  TreeNode    formTRee(List<TreeNode> list,int from ,int to){
-      while(from>to){
+      if(from>to){
        return null;   
       }
        int  middle=(from+to)/2;
