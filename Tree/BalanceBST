@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/balance-a-binary-search-tree/
+
+class Solution {
+    public TreeNode balanceBST(TreeNode root) {
+        List<TreeNode> list=new ArrayList<>();
+        inorder(list,root);
+     return   formTRee(list,0,list.size()-1);
+    }
+  void   inorder(List<TreeNode> list,TreeNode node){
+         if(node==null)
+             return;
+         inorder(list,node.left); 
+         list.add(node);
+         inorder(list,node.right); 
+     }
+ TreeNode    formTRee(List<TreeNode> list,int from ,int to){
+      while(from>to){
+       return null;   
+      }
+       int  middle=(from+to)/2;
+       TreeNode   node=list.get(middle);
+         node.left=formTRee(list,from,middle-1);    
+         node.right=formTRee(list,middle+1,to);    
+     return node;
+     }
+}
