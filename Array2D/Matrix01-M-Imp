@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/01-matrix/
+//..........................naive approch ,check all element in matrix....................................................
+
+class Solution {
+    public int[][] updateMatrix(int[][] m) {
+        int r=m.length;
+        int c=m[0].length;
+        int res[][]=new int [r][c];
+       for(int i=0;i<r;i++){
+              for(int j=0;j<c;j++){
+                  if(m[i][j]!=0)
+                  res[i][j]=calculate(i,j,m);
+              } 
+       }
+     return res;
+    }
+    
+    int calculate(int x,int y,int[][] m){
+       int r=m.length;
+       int c=m[0].length;
+       int count=Integer.MAX_VALUE;
+              for(int i=0;i<r;i++){
+              for(int j=0;j<c;j++){
+                  if(m[i][j]==0)
+               count=Math.min(count,Math.abs(x-i)+Math.abs(y-j));
+              } 
+       } 
+        return count;
+      }   
+}
+//...............................better approch.................................................................
+
+
