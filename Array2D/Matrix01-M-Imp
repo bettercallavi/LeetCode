@@ -30,4 +30,42 @@ class Solution {
 }
 //...............................better approch.................................................................
 
-
+class Solution {
+    public int[][] updateMatrix(int[][] matrix) {
+        int index=1;   
+        boolean changed = true;
+        while(changed) {
+           changed = false;
+           for (int i=0; i<matrix.length; i++) {
+               for (int j=0; j<matrix[i].length; j++) {
+                    if (matrix[i][j] == index) {
+                        int min = Integer.MAX_VALUE;
+                        if (i > 0 && matrix[i-1][j] < min) {
+                            min = matrix[i-1][j];
+                        }
+                        
+                        if (i+1 < matrix.length && matrix[i+1][j] < min) {
+                            min = matrix[i+1][j];
+                        }
+                        
+                        if (j > 0 && matrix[i][j-1] < min) {
+                            min = matrix[i][j-1];
+                        }
+                        
+                        if (j + 1 < matrix[0].length && matrix[i][j+1] < min) {
+                            min = matrix[i][j+1];
+                        }
+                        
+                        if (min != matrix[i][j] - 1) {
+                            matrix[i][j] = matrix[i][j] + 1;
+                            changed = true;
+                        }
+                    }
+               }    
+           }     
+            
+           index++;
+        }  
+        return matrix;
+    }
+}
