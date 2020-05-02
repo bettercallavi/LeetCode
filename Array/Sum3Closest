@@ -5,7 +5,7 @@
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
-        int sum=100_000;
+        int sum=nums[0] + nums[1] + nums[2];
         for(int i=0;i<nums.length-2;i++){
             
            if(i>0 && nums[i]==nums[i-1])
@@ -15,7 +15,6 @@ class Solution {
                         
         while(low<high){
                     int new1=nums[i]+nums[low]+nums[high]; 
-                    System.out.println(nums[i]+"-"+nums[low]+"-"+nums[high]+"-"+sum+"-"+new1);
                    if(sum==target)return sum;
                    if(Math.abs(sum-target)>Math.abs(new1-target)){
                     sum=new1;
@@ -31,4 +30,27 @@ class Solution {
         return sum;
     }
 }
-//.............................................better aproch.......................................................
+//.............................................same approch with clean code.......................................................
+
+class Solution {
+   public int threeSumClosest(int[] nums, int target) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        int res = nums[0] + nums[1] + nums[2];
+        for (int i = 0; i < n; i++) {
+            int l = i + 1, r = n - 1;
+            while (l < r) {
+                int sum = nums[l] + nums[r] + nums[i];
+                if (Math.abs(sum - target) < Math.abs(res - target)) res = sum; // update res
+                if (sum == target) {
+                    return target; // if sum equals target, just return because it must be the closest
+                } else if (sum < target) {
+                    l++;
+                } else {
+                    r--;
+                }
+            }
+        }
+        return res;
+    }
+}
