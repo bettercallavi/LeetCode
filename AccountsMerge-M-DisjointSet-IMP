@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/accounts-merge/
-
+//create variable  like account here for faster code run 
 class Solution {
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
       List<List<String>> result = new ArrayList<>();
@@ -13,13 +13,15 @@ class Solution {
          // union find 
          Map<String,Integer> emailToIdxMap=new HashMap<>();
          for(int i=0;i<accounts.size();i++){
-            for(int j=1;j<accounts.get(i).size();j++){
-                if(emailToIdxMap.containsKey(accounts.get(i).get(j))){
-                    int r1=find(emailToIdxMap.get(accounts.get(i).get(j)),parent);
+             List<String> account = accounts.get(i);
+            for(int j=1;j<account.size();j++){
+                String email = account.get(j);
+                if(emailToIdxMap.containsKey(email)){
+                    int r1=find(emailToIdxMap.get(email),parent);
                     int r2=find(i,parent);
                     parent[r2]=r1;
                 }else{
-                    emailToIdxMap.put(accounts.get(i).get(j),i);
+                    emailToIdxMap.put(account.get(j),i);
                 }
             }}
                   // merge accounts   
