@@ -1,7 +1,18 @@
 //https://leetcode.com/problems/add-two-numbers-ii/
 
 
-public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+public ListNode reverse(ListNode head) {
+        ListNode newH = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = newH;
+            newH = head;
+            head = next;
+        }
+        return newH;
+    }
+    
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode a = reverse(l1);
         ListNode b = reverse(l2);
         int carry = 0;
