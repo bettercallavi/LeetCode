@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/arithmetic-slices/
+
+		class Solution {
+			public int numberOfArithmeticSlices(int[] A) {
+				int flag=0;
+				int a=0;
+				for(int i=1;i<A.length-1;i++){
+					if(A[i]-A[i-1]==A[i+1]-A[i]){
+						 a++;
+					}
+
+					else{
+						flag+=count(a);
+						a=0;
+					}
+
+				}
+				 flag+=count(a); // to get last one count 
+				return flag;
+			}
+			int count(int n){
+			 return (n*(n+1))/2;        //basic n natural number sum 
+			}
+		}
