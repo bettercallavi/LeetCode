@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/array-of-doubled-pairs/
+
+public boolean canReorderDoubled(int[] A) {
+        TreeMap<Integer,Integer> map = new TreeMap();
+        
+        for(int x:A){
+            map.put(x,map.getOrDefault(x,0)+1);
+        }
+        
+        for(int x:map.keySet()){
+            int count=map.getOrDefault(x,0);            
+            if(count==0)
+                continue;
+            int want = x<0?x/2:x*2;
+            int wantCount = map.getOrDefault(want,0);            
+            if( wantCount < count)
+                return false;
+            map.put(x,count-wantCount);
+            map.put(want,wantCount-count);            
+        }
+        return true;
+    }
