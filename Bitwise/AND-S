@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/bitwise-and-of-numbers-range/
+//https://www.youtube.com/channel/UC5KbhWY7vCOEz_dMWX1t3nA
+
+class Solution {
+    public int rangeBitwiseAnd(int m, int n) {
+           int i=0;
+        while(m!=n){
+            m=m>>1;
+            n=n>>1;
+            i++;
+        }
+        return n<<i;
+    }
+}
