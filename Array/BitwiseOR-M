@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/bitwise-ors-of-subarrays/
+//https://leetcode.com/problems/bitwise-ors-of-subarrays/discuss/399300/Intuitive-Java-Solution-With-Explanation
+
+
+
+class Solution {
+      public int subarrayBitwiseORs(int[] a) {
+        Set<Integer> curr = null, prev = new HashSet<>(), uniqs = new HashSet<>();
+                
+      for(int i:a){
+           curr=new HashSet<>();
+           prev.add(0);  
+          for(int j:prev){
+              curr.add(i|j);
+              uniqs.add(i|j);
+          }
+          prev=curr;
+      }
+        return uniqs.size();
+      }
+}
