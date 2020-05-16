@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/best-sightseeing-pair/
+
+
+class Solution {
+    public int maxScoreSightseeingPair(int[] A) {
+        int i, N = A.length;
+        
+        int[] deltaA = new int[N];
+        int[] deltaB = new int[N];
+        
+        int max = Integer.MIN_VALUE;
+        for(i = N - 1; i >= 0; i--){                  
+            max = Math.max(max, A[i] - i);
+            deltaB[i] = max;
+            deltaA[i] = A[i] + i;
+        }
+        
+        max = Integer.MIN_VALUE;
+        for(i = 0; i < N - 1; i++){
+            max = Math.max(max, deltaA[i] + deltaB[i + 1]);
+        }
+        
+        return max;
+    }
+}
