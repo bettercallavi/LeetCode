@@ -1,0 +1,29 @@
+// all imp tree method 
+
+
+//height
+    int height(TreeNode node){
+        if(node==null)
+            return 0;
+       return Math.max(height(node.left)+1,height(node.left)+1); 
+    }
+    
+    //count all node 
+    
+    int count(TreeNode node){
+         if(node==null)
+            return 0;
+       return 1+count(node.left)+count(node.right); 
+    }
+    
+    //find a  node 
+    
+    TreeNode find(TreeNode node,int n){
+        if(node==null)
+            return null;
+        if(node.val==n)
+            return node;
+       TreeNode left=find(node.left,n);
+       TreeNode right=find(node.right,n);
+        return left==null? right:left;
+    }
