@@ -1,0 +1,31 @@
+//https://leetcode.com/problems/binary-tree-coloring-game/
+
+
+	//find node in leftSubTree,then in rightSubTree ,then find leftNodeCount
+	//if max of above 3 is greater than n/2 return true 
+	class Solution {
+		public boolean btreeGameWinningMove(TreeNode root, int n, int x) {
+			TreeNode node=find(root,x);
+			int countLeft=count(node.left);
+			int countRight=count(node.right);
+			int leftNodeCount=n-countLeft-countRight-1;
+			int max=Math.max(leftNodeCount,Math.max(countLeft,countRight));
+		   return max>((n/2))? true:false; 
+		}
+		//method to count number of node in a subtree 
+		int count(TreeNode node){
+			 if(node==null)
+				return 0;
+		   return 1+count(node.left)+count(node.right); 
+		}
+		//method to find node
+		TreeNode find(TreeNode node,int n){
+			if(node==null)
+				return null;
+			if(node.val==n)
+				return node;
+		   TreeNode left=find(node.left,n);
+		   TreeNode right=find(node.right,n);
+			return left==null? right:left;
+		}
+	}
