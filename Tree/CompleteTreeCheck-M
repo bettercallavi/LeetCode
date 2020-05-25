@@ -25,3 +25,31 @@ public boolean isCompleteTree(TreeNode root) {
 	return true;
 }
 }
+//.....................better approch ,just add a for loop...........
+
+class Solution {
+public boolean isCompleteTree(TreeNode root) {
+	Queue<TreeNode> q = new LinkedList<>();
+	q.add(root);
+	while (!q.isEmpty()) {
+		for (int b = q.size(); b > 0; b--) {
+			TreeNode cur = q.poll();
+			if (cur == null) {
+				// make sure the remaining elements are also null in the queue
+				while (!q.isEmpty()) {
+					cur = q.poll();
+					if (cur != null) {
+						return false;
+					}
+				}
+				return true;
+			} 
+
+			q.add(cur.left);
+			q.add(cur.right);
+
+		}
+	}
+	return true;
+}
+}
