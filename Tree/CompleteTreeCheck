@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/check-completeness-of-a-binary-tree/
+///as soon as you find null ,check other in queue is also null 
+
+class Solution {
+public boolean isCompleteTree(TreeNode root) {
+	Queue<TreeNode> q = new LinkedList<>();
+	q.add(root);
+	while (!q.isEmpty()) {
+			TreeNode cur = q.poll();
+			if (cur == null) {
+				// make sure the remaining elements are also null in the queue
+				while (!q.isEmpty()) {
+					cur = q.poll();
+					if (cur != null) {
+						return false;
+					}
+				}
+				return true;
+			} 
+
+			q.add(cur.left);
+			q.add(cur.right);
+
+		}
+	return true;
+}
+}
