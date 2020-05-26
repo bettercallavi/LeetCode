@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/camelcase-matching/submissions/
+
+		class Solution {
+			public List<Boolean> camelMatch(String[] queries, String pattern) {
+				List<Boolean> list=new ArrayList<>();
+				for(int i=0;i<queries.length;i++){
+					if(check(queries[i],pattern))
+						list.add(true);
+					else
+						list.add(false);
+				}      
+				return list;
+			}  
+			//method to check pattern char is present in query in same order 
+			 boolean check(String q,String p){
+				 int j=0;
+				 for(int i=0;i<p.length();i++){
+					 boolean flag=false;
+					  while(j<q.length()){
+						  if(p.charAt(i)==q.charAt(j)){
+							  flag=true;
+							  j++;
+							  break;
+						  }
+					   j++;
+					  }
+					 if(!flag)return false;
+				 }
+				 return capitalCheck(q,p);
+			 }  
+			//method to check is number of uppercase in query and pattern is same 
+			boolean capitalCheck(String q,String p){
+				int a[]=new int[26];
+				for(int i=0;i<q.length();i++){
+					if(q.charAt(i)>='A'  && q.charAt(i)<='Z')
+						a[q.charAt(i)-'A']+=1;
+				}
+				 for(int i=0;i<p.length();i++){
+				 if(p.charAt(i)>='A'  && p.charAt(i)<='Z')
+						a[p.charAt(i)-'A']-=1;
+				}
+
+				for(int i=0;i<26;i++){
+					if(a[i]!=0)
+						return false; 
+				}
+				return true;
+			}
+		}
