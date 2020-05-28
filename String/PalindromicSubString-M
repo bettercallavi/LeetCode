@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/longest-palindromic-substring/
+
+class Solution {
+    public String longestPalindrome(String s) {
+    int start=0;
+    int end=0;
+        if(s==null || s.length()<1)return "";
+        for(int i=0;i<s.length();i++){
+         int l1=findSubString(s,i,i);
+         int l2=findSubString(s,i,i+1);
+          int l=Math.max(l1,l2);
+            if(l>end-start){
+             start=i-(l-1)/2;
+             end=start+l-1;
+            }
+        }
+      return s.substring(start,end+1);  
+    }
+    
+    int findSubString(String s,int i,int j){
+        if(i>j) 
+            return 0;
+    while(i>=0 && j<s.length() && s.charAt(i)==s.charAt(j)){
+        i--;
+        j++;
+    }   
+        //i and j will always come incrased by 2 due to last run so minus 1 is needed 
+        return j-i-1;
+  }
+}
