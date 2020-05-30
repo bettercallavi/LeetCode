@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+
+public int maxProfit(int[] prices, int fee) {
+        if(prices.length <= 1) return 0;
+
+        int buy = -prices[0];
+        int sell = 0;
+
+        for(int i = 0; i < prices.length; i++){
+            //you don't need to pay transaction fee when you buy
+            buy = Math.max(buy, sell - prices[i]);
+            //you only need to pay transaction fee when you sell
+            sell = Math.max(sell, buy + prices[i] - fee);
+        }
+
+        return sell;
+    }
