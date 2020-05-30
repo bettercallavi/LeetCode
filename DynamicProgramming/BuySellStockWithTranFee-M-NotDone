@@ -8,7 +8,7 @@ public int maxProfit(int[] prices, int fee) {
 
         for(int i = 0; i < prices.length; i++){
             //you don't need to pay transaction fee when you buy
-            buy = Math.max(buy, sell - prices[i]);  //net buy price=>previous selling price - new buyign price 
+            buy = Math.max(buy, sell - prices[i]);  //net buy price=>previous selling price - new buying price 
             //you only need to pay transaction fee when you sell
             sell = Math.max(sell, buy + prices[i] - fee);
         }
