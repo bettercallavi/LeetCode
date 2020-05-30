@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/longest-increasing-subsequence/
+
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int n=nums.length;
+        if(n==0)return 0;
+        int a[]=new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=1;
+        }      
+        for(int i=1;i<n;i++){
+          for(int j=0; j < i; j++){
+              if(nums[j]<nums[i])
+                a[i]=Math.max(a[i],a[j]+1);
+          }
+        }
+       int maxIndex = 0;
+        for(int i=0; i < n; i++){
+            if(a[i] > a[maxIndex]){
+                maxIndex = i;
+            }
+        }
+        return a[maxIndex];
+    }
+}
