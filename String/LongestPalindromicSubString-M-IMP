@@ -18,8 +18,6 @@ class Solution {
     }
     
     int findSubString(String s,int i,int j){
-        if(i>j) 
-            return 0;
     while(i>=0 && j<s.length() && s.charAt(i)==s.charAt(j)){
         i--;
         j++;
