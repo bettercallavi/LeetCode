@@ -1,0 +1,46 @@
+//https://leetcode.com/problems/shortest-bridge/
+
+class Solution {
+    public int shortestBridge(int[][] A) {
+        int min=Integer.MAX_VALUE;
+        int finished=0;
+        for(int i=0;i<A.length;i++){
+            for(int j=0;j<A[0].length;j++){
+             if(A[i][j]==1 && finished==0){
+                dfs(A,i,j);
+                finished=1;
+             };
+            if(finished==1 && A[i][j]==1)
+                min=Math.min(min,findMin(A,i,j));
+            }
+        }
+       return min;
+    }
+    int findMin(int[][] A,int x,int y){
+        int min=Integer.MAX_VALUE;
+         for(int i=0;i<A.length;i++){
+            for(int j=0;j<A[0].length;j++){
+             if(A[i][j]==2){ 
+                 int sum=Math.abs(x-i)+Math.abs(y-j)-1;
+              min=Math.min(min,sum);  
+             }
+            }}
+        return min;
+    }
+    void dfs(int[][] A,int i,int j){
+   int x[] = new int[] {-1,0,0,1}; 
+   int y[] = new int[] {0,-1,1,0};
+        A[i][j]=2;
+      for (int k = 0; k < 4; ++k){
+          if(isSafe(A,i+x[k],j+y[k]) && A[i+x[k]][j+y[k]]==1)
+              dfs(A,i+x[k],j+y[k]);
+      }
+    }
+    
+     boolean isSafe(int A[][], int row, int col) 
+    {  
+       int  ROW=A.length;
+       int  COL=A[0].length;
+        return (row >= 0) && (row < ROW) && (col >= 0) && (col < COL) && (A[row][col] == 1); 
+    }
+}
