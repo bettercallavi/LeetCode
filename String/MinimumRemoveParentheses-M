@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+//solved but this one is better solution 
+
+class Solution {
+  public String minRemoveToMakeValid(String s) {
+	if(s == null || s.isEmpty()) return s;
+
+	Stack<Integer> st = new Stack<>();
+	char[] car = s.toCharArray();
+
+	for(int i = 0; i < car.length; i++) {
+		if(car[i] == '(') st.push(i);
+		if(car[i] == ')') {
+			if(!st.isEmpty()) st.pop();
+			else car[i] = ' ';
+		}
+	}
+      System.out.println(car);
+      System.out.println(st);
+	while(!st.isEmpty()) {
+		car[st.pop()] = ' ';
+	}
+	return String.valueOf(car).replaceAll(" ", "");
+}
+}
