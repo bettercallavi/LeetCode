@@ -1,0 +1,32 @@
+//https://leetcode.com/problems/is-graph-bipartite/
+//https://www.youtube.com/watch?v=mVmXwFkgoJ0
+
+class Solution {
+            Queue<Integer> q=new LinkedList<>();
+    
+    public boolean isBipartite(int[][] g) {
+       int color[]=new int[g.length];
+        Arrays.fill(color,-1);
+        for (int i = 0; i <g.length; i++) 
+          if (color[i] == -1) 
+            if (isBipartiteUtil(g,i,color) == false) 
+               return false; 
+         return true; 
+    }
+        public boolean isBipartiteUtil(int[][] g,int src,int[] color) {
+        color[src]=1;
+         q.add(src);
+        while(!q.isEmpty()){
+            int cur=q.poll();
+            for(int i=0;i<g[cur].length;i++){
+                if(color[g[cur][i]]==-1){
+                    color[g[cur][i]]=1-color[cur];
+                    q.add(g[cur][i]);
+                }
+ else  if(color[g[cur][i]]==color[cur])
+                   return false;
+            }
+        }
+        return true;
+    }
+}
