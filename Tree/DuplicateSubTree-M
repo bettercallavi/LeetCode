@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/find-duplicate-subtrees/submissions/
+//https://www.youtube.com/watch?v=nxHBg7hm0rs
+
+
+class Solution {
+    Map<String,Integer> map;
+    List<TreeNode> list;
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        list=new ArrayList<>();
+        map=new HashMap<>();
+        duplicate(root);
+        return list;
+    }
+    
+    String duplicate(TreeNode node){
+        if(node==null)
+            return "X";
+        String l=duplicate(node.left);
+        String r=duplicate(node.right);
+        String s=Integer.toString(node.val)+"-"+l+"-"+r;    // "-" adding to differenciate between 1,11,null and 11,1,null
+        map.put(s,1+map.getOrDefault(s,0));
+        if(map.get(s)==2)
+            list.add(node);
+        return s;
+    }
+    
+}
