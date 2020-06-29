@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/search-in-rotated-sorted-array/
+//https://leetcode.com/problems/search-in-rotated-sorted-array/discuss/708846/JAVA-Simple-Solution-with-code-faster-than-100.00
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int start=0;
+        int end=nums.length-1;
+        String sortedHalf="";
+        while(start<=end){
+        int    mid=start+(end-start)/2;
+            if(nums[mid]==target)
+                return mid;
+            if(nums[mid]<nums[end])
+             sortedHalf="right";
+            else 
+                sortedHalf="left";
+            if("right".equals(sortedHalf)){
+                if(target<=nums[end] && target>=nums[mid])
+                    start=mid+1;
+                 else
+                     end=mid-1;
+            }
+            else{
+                 if(target>=nums[start] && target<=nums[mid])
+                   end=mid-1;
+                 else
+                     start=mid+1 ;
+            }
+            }
+        return -1;
+        }
+    }
