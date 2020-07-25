@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/coin-change/
+//https://www.youtube.com/watch?v=Y0ZqKpToTic
+// https://practice.geeksforgeeks.org/problems/coin-change/0   #related problem
+
+
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int a[][]=new int[coins.length+1][amount+1];
+            for(int i=1; i <= amount; i++){
+            a[0][i] = Integer.MAX_VALUE-1;
+        }
+      for(int i=1;i<=coins.length;i++){
+        for(int j=1;j<=amount;j++){
+          if(j>=coins[i-1])
+            a[i][j]=Math.min(a[i-1][j],1+a[i][j-coins[i-1]]);
+          else
+            a[i][j]=a[i-1][j];
+        }} 
+      if(a[coins.length][amount]!=Integer.MAX_VALUE-1)
+        return a[coins.length][amount];
+      else
+        return -1;
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 2 d array is not needed 
+
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int a[] = new int[amount + 1];
+        a[0] = 0;
+        for(int i=1; i <= amount; i++){
+            a[i] = Integer.MAX_VALUE-1;
+        }
+        for(int j=0; j < coins.length; j++){
+            for(int i=1; i <= amount; i++){
+                if(i >= coins[j]){
+                    if (a[i - coins[j]] + 1 < a[i]) {
+                        a[i] = 1 + a[i - coins[j]];
+                    }
+                }
+            }
+        }
+            if(a[amount]!=Integer.MAX_VALUE-1)
+        return a[amount];
+      else
+        return -1;
+    }
+}
