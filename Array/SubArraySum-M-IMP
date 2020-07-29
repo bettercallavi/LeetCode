@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/subarray-sum-equals-k/
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+		int resultCount = 0;
+		Map<Integer, Integer> sumCountMap = new HashMap<>();
+		sumCountMap.put(0, 1);
+		
+		int sum = 0;
+		for (int i = 0; i < nums.length; i++) {
+			sum = sum + nums[i];
+      System.out.println(sum);
+			int difference = sum - k;
+			if (sumCountMap.containsKey(difference)) {
+				resultCount = resultCount + sumCountMap.get(difference);
+			}
+			sumCountMap.put(sum, sumCountMap.getOrDefault(sum, 0) + 1);
+		}
+        
+		return resultCount;
+}
+}
