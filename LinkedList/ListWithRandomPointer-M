@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/copy-list-with-random-pointer/
+//https://www.youtube.com/watch?v=OvpKeraoxW0
+//first may is using o(n) extra space using hashmap 
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        Map<Node,Node> map=new HashMap<>();
+      Node root=head;
+      while(head!=null){
+        Node node=new Node(head.val);
+        map.put(head,node);
+        head=head.next;
+      }
+      head=root;
+       for(Map.Entry<Node,Node> entry : map.entrySet()){
+         entry.getValue().random=map.get(entry.getKey().random);
+       }
+      for(Map.Entry<Node,Node> entry : map.entrySet()){
+         entry.getValue().next=map.get(entry.getKey().next);
+       }
+      return map.get(head);
+
+//######################################################################################################################################
+/second way is using o(1) extra space 
