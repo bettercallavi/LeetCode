@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/copy-list-with-random-pointer/
 //https://www.youtube.com/watch?v=OvpKeraoxW0
-//first may is using o(n) extra space using hashmap 
+//first may is using o(n) extra space using hashmap ,total 3 iteration is needed here  
 
 class Solution {
     public Node copyRandomList(Node head) {
@@ -22,3 +22,39 @@ class Solution {
 
 //######################################################################################################################################
 /second way is using o(1) extra space 
+   // create a new node after each node. which is our deep copy
+ // list will become twice the size
+ // Now we have all new nodes, list is twice the size now. 
+ // Assign the random nodes properly. 
+// now we have randoms for new list assigned well. 
+ // create a new list and break it up
+ // total 3 iteration needed to complete .
+ 
+ class Solution {
+    public Node copyRandomList(Node head) {  
+      if(head == null) return head;
+      Node root=head;
+        while(head!=null){
+            Node node=new Node(head.val);
+            Node next=head.next;
+            head.next=node;
+            node.next=next;
+             head=next;
+        }
+      head=root;
+      while(head!=null){
+         head.next.random=head.random!=null? head.random.next:null; 
+         head=head.next.next;
+      }
+        head=root;
+        Node cur=head.next;
+        Node copy=cur;
+      while(head!=null){
+        head.next=cur.next;
+        head=head.next;
+        cur.next=head!=null ? head.next:null;
+        cur=cur.next;
+      }
+      return copy;
+    }
+}
