@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/daily-temperatures/
+//easy way also there ,but solve it using some data structure 
+
+//easy solution but time complexity is not good 
+
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+      int n=T.length;
+      int a[]=new int[n];
+      a[n-1]=0;
+      for(int i=n-2;i>=0;i--){
+        a[i]=find(T,i);
+      }
+      return a;  
+    }
+    int find(int[] T,int i){
+      int count=0;
+      for(int j=i+1;j<T.length;j++){
+        if(T[j]>T[i])
+          return count+1;
+        else
+         count++;
+      }
+      return 0;
+    }
+}
+
+//#####################################################################better way 
+
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        int[] res = new int[T.length];
+        Stack<Integer> stack = new Stack<Integer>();
+        for(int i=0;i<T.length;i++){
+		   //If you find a day with higher temp this will be the ans for all earlier days with lower temp in the stack.
+           //So pop all of the lower temp days in the stack & add the diff of indexes into the res array.
+            while(!stack.empty() && T[i]>T[stack.peek()]){
+                    res[stack.peek()]=i-stack.pop();
+            }
+            stack.push(i);
+        }
+        return res;
+    }
+}
