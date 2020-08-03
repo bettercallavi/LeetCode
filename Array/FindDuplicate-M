@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/find-the-duplicate-number
+//https://www.youtube.com/watch?v=dfIqLxAf-8s
+//The size of the array is at least N+1 with N integer. It means if we start from item at index 0, all the N+1 items from index 0 to index N will be visited.
+//The number we want to find will be visited at least twice, which makes the existence of cycle a definite!
+
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow=nums[0];
+        int fast=nums[0] ;
+      do{
+       slow=nums[slow];
+       fast=nums[fast];
+      fast=nums[fast];
+       }
+      while(slow!=fast);
+ int p1=nums[0]; 
+ int p2=slow;
+   while(p1!=p2){
+     p1=nums[p1];
+     p2=nums[p2];
+   }   
+      return p1;
+    }
+}
