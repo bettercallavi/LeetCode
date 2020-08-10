@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/target-sum/
-
+//dfs and knapsack solution 
 
 class Solution {
     public int findTargetSumWays(int[] nums, int S) {
@@ -15,3 +15,35 @@ class Solution {
     }
 }
 
+//............................................................................................................................
+
+
+class Solution {
+    public int findTargetSumWays(int[] nums, int S) {
+        int sum=0;
+      for(int i=0;i<nums.length;i++)
+        sum+=nums[i];
+      
+           if(S>sum)
+            return 0;
+      if((sum-S)%2!=0)
+            return 0;
+      
+      int diff=(sum+S)/2;
+      int a[][]=new int[nums.length+1][diff+1];
+      
+        a[0][0] = 1;
+ 
+        for(int i=1;i<=nums.length;i++){
+          for(int j=0;j<=diff;j++){
+            if(nums[i-1]<=j){
+              a[i][j]=a[i-1][j]+a[i-1][j-nums[i-1]];
+            }
+            else{
+               a[i][j]=a[i-1][j];
+            }
+          }
+        }
+        return a[nums.length][diff];
+    }
+}
