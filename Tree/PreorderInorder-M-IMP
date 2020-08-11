@@ -1,0 +1,17 @@
+// https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return build(preorder,inorder,0,preorder.length-1,0);
+    }
+  TreeNode build(int[] preorder,int[] inorder,int s,int e,int index){
+     if(s>e)return null;
+    TreeNode node=new TreeNode(preorder[index]);
+       int inIndex=s;
+    while(inorder[inIndex]!=preorder[index])inIndex++;
+    
+      node.left=build(preorder,inorder,s,inIndex-1,index+1);
+      node.right=build(preorder,inorder,inIndex+1,e,index+inIndex+1-s);
+    return node;
+  }
+}
