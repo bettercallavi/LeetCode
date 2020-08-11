@@ -1,4 +1,6 @@
 //https://leetcode.com/problems/target-sum/
+//https://www.youtube.com/watch?v=Hw6Ygp3JBYw
+
 //dfs and knapsack solution 
 
 class Solution {
