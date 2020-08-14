@@ -1,0 +1,63 @@
+//https://leetcode.com/problems/implement-trie-prefix-tree/
+//https://github.com/mission-peace/interview/blob/master/src/com/interview/suffixprefix/Trie.java
+
+
+class Trie {
+  TreeNode root;
+ private class TreeNode{
+      Map<Character,TreeNode> children;
+      boolean end;
+    public TreeNode(){
+        children=new HashMap<>();
+       end=false;
+    }
+ }
+    /** Initialize your data structure here. */
+    public Trie() {
+         root=new TreeNode();
+    }
+    
+    /** Inserts a word into the trie. */
+    public void insert(String word) {
+       TreeNode current=root;
+      for(char c:word.toCharArray()){
+        if(current.children.containsKey(c)){
+          current=current.children.get(c);
+        }
+        else{
+         TreeNode node=new TreeNode();
+          current.children.put(c,node);
+          current=current.children.get(c);
+        }
+      } 
+      current.end=true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) {
+        TreeNode current=root;
+        for(char c:word.toCharArray()){
+        if(current.children.containsKey(c)){
+          current=current.children.get(c);
+        }
+        else{
+         return false;
+        }
+      } 
+      return current.end;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    public boolean startsWith(String prefix) {
+       TreeNode current=root;
+        for(char c:prefix.toCharArray()){
+        if(current.children.containsKey(c)){
+          current=current.children.get(c);
+        }
+        else{
+         return false;
+        }
+      } 
+      return true;
+    }
+}
