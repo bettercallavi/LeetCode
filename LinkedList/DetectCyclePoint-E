@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/linked-list-cycle-ii/
+//https://www.youtube.com/watch?v=_BG9rjkAXj8
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+      ListNode slow=head;
+      ListNode fast=head;
+      if (head == null || head.next == null) 
+            return null;
+      slow = slow.next; 
+        fast = fast.next.next; 
+  
+      while(slow!=null && fast!=null && fast.next!=null){
+        if(slow==fast)
+          return get(slow,head);
+        slow=slow.next;
+        fast=fast.next.next;
+      }
+      return null;
+    }
+  public ListNode get(ListNode node,ListNode head){
+    System.out.println(node.val);
+    while(head!=node){
+      node=node.next;
+      head=head.next;
+    }
+    return node;
+  }
+}
