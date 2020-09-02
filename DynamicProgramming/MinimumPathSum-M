@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/minimum-path-sum/
+// timeout 
+
+public class Solution {
+    public int minPathSum(int[][] grid) {
+        return minPathSum(0, 0, grid);
+    }
+
+    private int minPathSum(int row, int col, int[][] grid) {
+        if (row < 0 || row >= grid.length || col < 0 || col >= grid[row].length) return Integer.MAX_VALUE;
+        if (row == grid.length - 1 && col == grid[row].length - 1) return grid[row][col];
+
+        int minSum = Integer.MAX_VALUE;
+        int sum1 = minPathSum(row, col + 1, grid);
+        int sum2 = minPathSum(row + 1, col, grid);
+
+        if (sum1 != Integer.MAX_VALUE) {
+            minSum = Math.min(minSum, sum1 + grid[row][col]);
+        }
+
+        if (sum2 != Integer.MAX_VALUE) {
+            minSum = Math.min(minSum, sum2 + grid[row][col]);
+        }
+
+        return minSum;
+    }
+}
