@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/permutations/
+
+
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList();
+        traverse(nums,list, 0, new ArrayList());
+        return list;
+    }
+    public void traverse(int[] nums, List<List<Integer>> list, int index, List<Integer> cList){
+        if(index == nums.length){
+            list.add(new ArrayList(cList));
+            return;
+        }
+        
+        for(int i=index;i<nums.length;i++){
+            swap(nums, i, index);
+            cList.add(nums[index]);
+            traverse(nums, list, index+1, cList);
+            cList.remove(cList.size()-1);
+            swap(nums,i,index);
+        }
+    }
+    
+    public void swap(int[] nums, int st, int end){
+        int temp = nums[st];
+        nums[st] = nums[end];
+        nums[end] = temp;
+    }
+}
