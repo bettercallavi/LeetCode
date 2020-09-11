@@ -1,0 +1,46 @@
+//https://leetcode.com/problems/sort-list/
+//https://www.geeksforgeeks.org/merge-sort/
+
+class Solution {
+    public ListNode sortList(ListNode head) {
+      if(head==null || head.next==null)return head;
+     ListNode mid = middle(head);
+     ListNode second=mid.next;
+      mid.next=null;
+      ListNode l=sortList(head);
+      ListNode r=sortList(second);
+      return head=sort(l,r);
+    }
+  
+  ListNode middle(ListNode head){
+    ListNode slow=head;
+    ListNode fast=head;
+    while(fast.next != null && fast.next.next != null){
+        slow=slow.next;
+        fast=fast.next.next;
+    }
+    return slow;
+  }
+  ListNode sort(ListNode l,ListNode r){
+    ListNode head=new ListNode(-1);
+    ListNode dummy=head;
+    while(l!=null && r!=null){
+       if(l.val<r.val){
+         dummy.next=l;
+         l=l.next;
+         dummy=dummy.next;
+       }else{
+         dummy.next=r;
+         r=r.next;
+        dummy=dummy.next;
+       }
+    }
+    if(l!=null){
+      dummy.next=l;
+    }
+    else if(r!=null){
+      dummy.next=r;
+    }
+      return head.next;
+  }
+}
