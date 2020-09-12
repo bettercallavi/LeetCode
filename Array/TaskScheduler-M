@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/task-scheduler/
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        int map[]=new int[26];
+      for(char i:tasks){
+         map[i-'A']+=1;
+      }
+      Arrays.sort(map);
+      int max=map[25]-1;
+      int position=max*n;
+      
+    for(int i=24; i>=0; i--){
+         position-=Math.min(max,map[i]);
+      }
+      return (position>0)? position+tasks.length:tasks.length;
+    }
+}
