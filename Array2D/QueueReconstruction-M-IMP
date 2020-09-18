@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/queue-reconstruction-by-height/
-//
+//test case can be invalid ,any input cant be correct example [[7,10],[4,10],[7,10],[5,10],[6,10],[5,10]]
 
 
 class Solution {
