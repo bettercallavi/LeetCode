@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/unique-binary-search-trees/
+//
+
+
+class Solution {
+    Map<Integer, Integer> memo = new HashMap<>();
+    public int numTrees(int n) {
+        if(n <= 1) {
+            return 1;
+        }
+        
+        // check if we have already counted the number of BSTs for n 
+        if(memo.containsKey(n)) {
+            return memo.get(n);
+        }
+        
+        int count = 0;
+        for(int i = 1; i <= n; i++) {
+            // count number of sub-trees on left when root = i
+            int left = numTrees(i-1);
+            
+            // count number of sub-trees on right when root = i
+            int right = numTrees(n-i);
+            
+            // total number of trees with when root = i is left * right
+            count += (left * right);
+        }
+        
+        // remember the count for n
+        memo.put(n, count);
+        
+        return count;
+    }
+}
