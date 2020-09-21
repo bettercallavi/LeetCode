@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/increasing-subsequences/
+//
+
+class Solution {
+  List<List<Integer>> res;
+   Set<List<Integer>> set;
+    public List<List<Integer>> findSubsequences(int[] nums) {
+     res=new ArrayList<>();
+        set=new HashSet<>();
+       findAll(nums,new ArrayList<Integer>(),0);
+      return res;
+    }
+  void findAll(int[] nums,List<Integer> temp,int index){
+     if(index>nums.length)
+       return ;
+    if(temp.size()>1){
+      List<Integer> clone=new ArrayList<Integer>(temp);
+      if(!set.contains(clone)){
+       res.add(clone);
+        set.add(clone);
+      }
+      
+    }
+        for(int i=index;i<nums.length;i++){
+          if(temp.size()==0 || temp.get(temp.size()-1)<=nums[i]){
+              temp.add(nums[i]);
+            findAll(nums,temp,i+1);
+           temp.remove(temp.size()-1);
+          }
+        }
+  }
+  
+}
