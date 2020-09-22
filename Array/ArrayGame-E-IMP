@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/find-the-winner-of-an-array-game/
+//If there's no such local maximum till the end of the traversal, we then return the whatever's in local maximum after array traversal,
+//because it actually holds the absolute maximum integer of the array, and it will never lose a subsequent games from this point on.
+
+class Solution {
+    public int getWinner(int[] arr, int k) {
+        int n=arr.length;
+        int max=Math.max(arr[0],arr[1]);
+        int count=1;
+      for(int i=2;i<n;i++){
+            if(count>=k){
+              return max;
+            }
+            if(arr[i]>max){
+              count=1;
+              max=arr[i];
+            }
+            else{
+              count++;
+            }
+      }
+      return max;
+    }
+}
