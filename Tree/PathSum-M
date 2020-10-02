@@ -11,10 +11,8 @@ class Solution {
  void    pathSum(TreeNode node,int sum,int target,ArrayList<Integer> list){
       if(node==null) return;
          list.add(node.val);
-       if(node.left==null && node.right==null){
-         if(sum+node.val==target)
+       if(node.left==null && node.right==null &&  sum+node.val==target)
            finalList.add(new ArrayList<Integer>(list));  
-       } 
           pathSum(node.left,sum+node.val,target,list); 
           pathSum(node.right,sum+node.val,target,list);
           list.remove(list.size()-1);
