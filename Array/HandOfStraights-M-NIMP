@@ -1,0 +1,55 @@
+//https://leetcode.com/problems/hand-of-straights/
+
+class Solution {
+    public boolean isNStraightHand(int[] hand, int w) {
+  if (hand == null || hand.length == 0 || w == 0 || hand.length % w != 0) return false;
+        
+        Arrays.sort(hand);
+        
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : hand) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        
+        for (int num : hand) {            
+            // if used already, then just skip
+            if (map.get(num) == 0) continue;
+            
+            // check consecutive numbers
+            for (int i = 0; i < w; i++) {
+                // if not the first card, and used up or not even existed
+                // this means that you cannot fit this round and should return false
+                if (i == 0 || map.getOrDefault(num + i, 0) > 0) {
+                    map.put(num + i, map.get(num + i) - 1);   
+                } else {
+                    return false;
+                }
+            }
+        }
+        
+       return true;
+    }
+  
+}
+//-----------------------not good approch 
+
+class Solution {
+    public boolean isNStraightHand(int[] hand, int W) {
+        List<Integer> list=Arrays.stream(hand)		// IntStream
+									.boxed()  		// Stream<Integer>
+									.collect(Collectors.toList());
+        Collections.sort(list);
+       while(list.size()>0){
+           int s=list.get(0);
+          for(int i=0;i<W;i++){
+             if(list.contains(s+i)){
+                list.remove(new Integer(s+i)); 
+             }
+            else
+                return false;
+          }
+       }
+       return true;
+    }
+  
+}
