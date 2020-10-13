@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/flatten-nested-list-iterator/
+
+public class NestedIterator implements Iterator<Integer> {
+
+  List<Integer> list=new ArrayList<>();
+  int p=0;
+  
+    public NestedIterator(List<NestedInteger> nestedList) {
+      method(nestedList);
+      }
+  void method(List<NestedInteger> nestedList){
+      for(NestedInteger i:nestedList){
+        if(i.isInteger())
+          list.add(i.getInteger());
+        else
+          method(i.getList());
+        }
+  }
+        
+
+    @Override
+    public Integer next() {
+        return list.get(p++);
+    }
+
+    @Override
+    public boolean hasNext() {
+        return p<(list.size())? true:false;
+    }
+}
