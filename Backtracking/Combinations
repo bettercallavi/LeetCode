@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/combinations/
+
+
+class Solution {
+    List<List<Integer>> list;
+    public List<List<Integer>> combine(int n, int k) {
+        list=new ArrayList<>();
+        backtrack(1,n,k,new ArrayList<Integer>());
+        return list;
+    }
+    void backtrack(int m,int n,int k,List<Integer> temp){
+        if(temp.size()>k)
+            return;
+        if(temp.size()==k)
+        list.add(new ArrayList<Integer>(temp));
+        
+        for(int i=m;i<=n;i++){            
+                 temp.add(i);
+                 backtrack(i+1,n,k,temp);
+                 temp.remove(temp.size()-1);       
+        }
+    }
+}
