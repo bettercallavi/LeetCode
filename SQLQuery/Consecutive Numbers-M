@@ -1,0 +1,6 @@
+//https://leetcode.com/problems/consecutive-numbers/
+
+SELECT num as ConsecutiveNums
+FROM (SELECT DISTINCT(num), lead(num, 1) OVER(ORDER BY id) as next_num, lead(num, 2) OVER(ORDER BY id) as next_next_num
+from logs) as h
+WHERE num = next_num and num = next_next_num
