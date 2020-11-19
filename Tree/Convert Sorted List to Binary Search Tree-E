@@ -1,5 +1,6 @@
 //https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
-
+//better approch 
+//https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/discuss/935098/Java-or-100-faster-and-100-memory-efficient
 
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
