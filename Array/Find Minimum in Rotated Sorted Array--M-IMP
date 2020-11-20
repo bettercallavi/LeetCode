@@ -1,0 +1,54 @@
+//https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+/*
+There are 2 situations of the array:
+
+the array is not rotated
+the array is rotated
+When the array is not rotated, nums[0] must be less than nums[nums.length-1],
+because the array is sorted in ascending order.
+
+While the array is rotated, nums[0] must be larger than nums[nums.length-1],
+so we can define 2 pointers to point the head and tail of the array,
+
+We can regard the array as the combination of 2 arrays are sorted in ascending order.
+So the only thing we should do is pushing the 2 pointers to middle.
+
+Make the head pointer to point the larger element in the front array,
+and make the tail pointer to point the smaller element in the rear array.
+
+And we should also get the mid element between these 2 pointers,
+define a pointer named mid pointer to get the mid element.
+
+There are also 2 situations of this mid element:
+
+the mid element is larger than the element pointed by head pointer
+the mid element is less than the element pointed by tail pointer
+Finally the head pointer is pointed to the max,
+and the tail pointer is pointed to the min.
+*/
+
+
+class Solution {
+    public int findMin(int[] nums) {
+        int n=nums.length;
+         int min=nums[n-1];
+     if(nums[0]<nums[n-1])
+         return nums[0];
+        
+         int hptr=0;
+         int tptr=n-1;
+         int mptr;
+         while(hptr<tptr){
+            mptr=hptr+(tptr-hptr)/2;
+            if(nums[mptr]>nums[hptr]){
+                hptr=mptr;
+            }else{
+                tptr=mptr;
+                min=Math.min(min,nums[mptr]);
+            }  
+         }
+     
+  return min;        
+}
+    
+}
