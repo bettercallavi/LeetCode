@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/single-number-ii/
+//
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        //strategy: Bit Manipulation
+        int answer = 0;
+        //count how many 1's are at the ith bit
+        for (int i = 0; i < 32; i++) {
+            int count = 0;
+            for (int n : nums) {
+                //see if there is a 1 at the ith bit in number n
+                count += n>> i & 1 ;   // not n & (1<<i )  //will not work in case of negative number ,will generate random number 
+            }
+            //if there is not a mutiple of 3 that means this bit is part of the answer
+            //add to answer by using OR and right shifting i positions
+               if(count%3!=0)
+                answer|=1<< i;
+        }
+        return answer;
+    }
+}
