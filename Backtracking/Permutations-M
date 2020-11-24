@@ -1,24 +1,25 @@
 //https://leetcode.com/problems/permutations/
-
+//https://leetcode.com/problems/permutations-ii/  //sililar problem
 
 class Solution {
+     List<List<Integer>> list;
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> list = new ArrayList();
-        traverse(nums,list, 0, new ArrayList());
+       list = new ArrayList();
+        traverse(nums, 0, new ArrayList());
         return list;
     }
-    public void traverse(int[] nums, List<List<Integer>> list, int index, List<Integer> cList){
+    public void traverse(int[] nums,int index, List<Integer> cList){
         if(index == nums.length){
             list.add(new ArrayList(cList));
             return;
         }
         
         for(int i=index;i<nums.length;i++){
-            swap(nums, i, index);
+           swap(nums, i, index);
             cList.add(nums[index]);
-            traverse(nums, list, index+1, cList);
+            traverse(nums, index+1, cList);
             cList.remove(cList.size()-1);
-            swap(nums,i,index);
+           swap(nums,i,index);
         }
     }
     
