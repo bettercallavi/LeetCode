@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/permutations-ii/
+
+class Solution {
+    List<List<Integer>> ans;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        ans=new ArrayList<>();
+         boolean used[] = new boolean[nums.length];
+        backtrack(nums,new ArrayList<Integer>(),used);
+        return ans;
+    }
+    void backtrack(int[] nums,List<Integer> list,boolean[] used){
+        if(list.size()==nums.length && !ans.contains(new ArrayList<>(list)))
+            ans.add(new ArrayList<>(list));
+        for(int i=0;i<nums.length;i++){
+           // System.out.println(start);
+            if(!used[i]){
+                list.add(nums[i]);
+                used[i]=true;
+            backtrack(nums,list,used);
+                 used[i]=false;
+            list.remove(list.size()-1);
+            }
+        }
+    }
+}
