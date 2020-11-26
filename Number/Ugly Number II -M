@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/ugly-number-ii/
-//
+//https://www.youtube.com/watch?v=QyeDRMprJVQ&t=636s
 
 class Solution {
     public int nthUglyNumber(int n) {
