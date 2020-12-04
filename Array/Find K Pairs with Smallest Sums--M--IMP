@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/find-k-pairs-with-smallest-sums/
-
+//https://leetcode.com/problems/find-k-pairs-with-smallest-sums/discuss/903636/Java-3-ms-faster-than-99.78-PriorityQueue
 
 class Solution {
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
