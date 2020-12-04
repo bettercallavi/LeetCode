@@ -1,0 +1,53 @@
+//https://leetcode.com/problems/find-k-pairs-with-smallest-sums/
+
+
+class Solution {
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+         List<List<Integer>> list=new ArrayList<>();
+       for(int n1 : nums1){
+				for(int n2 : nums2){
+                List<Integer> temp=new ArrayList<>();
+                temp.add(n1);
+                temp.add(n2);
+            list.add(temp);
+         }
+        }
+        Collections.sort(list,(a,b)->Integer.compare(a.get(0)+a.get(1),b.get(0)+b.get(1)));
+
+        return list.size()>=0? list.size()>k? list.subList(0,k):list.subList(0,list.size()) :list;
+    }
+}
+
+
+//...................Better approch below .............................................................................................................
+class Solution {
+    class Pair{
+        int i,j, sum;
+        public Pair(int i, int j, int sum) {
+            this.i = i;
+            this.j = j;
+            this.sum = sum;
+        }
+    }
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        List<List<Integer>> res = new ArrayList();
+        int m = nums1.length, n = nums2.length;
+        if (k == 0 || m == 0 || n == 0) return res;
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.sum - b.sum);
+        for (int i = 0; i < m; i++) {
+            pq.offer(new Pair(i, 0, nums1[i] + nums2[0]));
+        }
+        while(k > 0 && pq.size() > 0) {
+            Pair cur = pq.poll();
+            List<Integer> tmp = new ArrayList();
+            tmp.add(nums1[cur.i]);
+            tmp.add(nums2[cur.j]);
+            res.add(tmp);
+            if (cur.j + 1 < n) {
+                pq.offer(new Pair(cur.i, cur.j + 1, nums1[cur.i] + nums2[cur.j + 1]));
+            }
+            k--;
+        }
+        return res;
+    }
+}
