@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/find-k-closest-elements/
+//
+
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        class Node{
+            int val;
+            int diff;
+            Node(int x,int y){
+                val=x;
+                diff=y;
+            }
+        }
+        PriorityQueue<Node> pq=new PriorityQueue<>((a,b)->{
+          return  a.diff==b.diff? a.val-b.val:a.diff-b.diff;
+        });
+        
+        for(int i:arr){
+            pq.add(new Node(i, Math.abs(i-x)));
+        }
+        List<Integer> ans=new ArrayList<>();
+         for(int i=0;i<k;i++){
+             ans.add(pq.poll().val);
+         } 
+        Collections.sort(ans);
+        return ans;
+    }
+}
+//...................................better approch.............................................
+
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        int left = 0, right = k - 1;
+        
+        while (right < arr.length - 1 && 
+               (arr[right + 1] <= x || arr[right + 1] - x < x - arr[left])) {
+            left++;
+            right++;
+        }
+        
+        List<Integer> result = new ArrayList<>();
+        for (int i = left; i <= right; i++) {
+            result.add(arr[i]);
+        }
+        
+        return result;
+    }
+}
+
+
+
+
