@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/array-nesting/
+1.For every index, consider it as a starting node , increment counter until it reaches start(Loop).
+2.Optimization, Here, any element inside the loop will always have same count as its parent loop(it will be like starting from any bead of a necklace and returning to it), so no need to consider indices as a starting node of a loop which has been already visited.
+3.Elements which has not been visited will create another loop. So keep track of length of the loops with starting element!=-1 or not visited.
+
+class Solution {
+    public int arrayNesting(int[] nums) {
+         int ans=0;
+        for(int i=0;i<nums.length;i++){
+          int  count=0;
+           int j=i;
+            if(nums[i]==-1)
+                continue;
+            while(nums[j]!=-1){
+               count++;
+            int temp=j;
+               j=nums[j];
+               nums[temp]=-1;
+            }
+           ans=Math.max(count,ans);
+        }
+        return ans;
+    }
+}
