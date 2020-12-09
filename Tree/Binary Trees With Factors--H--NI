@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/binary-trees-with-factors/
+
+class Solution 
+{
+    public int numFactoredBinaryTrees(int[] A) 
+    {
+        Arrays.sort(A);
+        HashMap<Integer, Long> map = new HashMap<>();
+        long total = 0;
+        
+        for(int i = 0 ; i < A.length; i++)
+        {
+            long factors = 1;
+            for(int factor : map.keySet())
+                if(A[i] % factor == 0 && map.containsKey(A[i] / factor))
+                    factors += map.get(factor) * map.get(A[i] / factor);
+                    
+            map.put(A[i], factors);
+            total += factors;
+        }
+        
+        return (int)(total % 1000000007); 
+    }
+}
