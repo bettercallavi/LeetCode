@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/number-of-matching-subsequences/
+
+class Solution {
+     Set<String> set;
+    public int numMatchingSubseq(String S, String[] words) {
+         set=new HashSet<String>();
+       backtrack(S,0,"");
+        System.out.println(set);
+        int count=0;
+        for(String w:words){
+            if(set.contains(w))
+                count++;
+                }
+        return count;
+    }
+    void backtrack(String s,int index,String temp){
+        if(!set.contains(temp)){
+            set.add(new String(temp));            
+        }
+        for(int i=index;i<s.length();i++){
+             temp+=s.charAt(i);
+            backtrack(s,i+1,temp);
+            temp=temp.substring(0,temp.length()-1);
+        }  
+    }
+}
