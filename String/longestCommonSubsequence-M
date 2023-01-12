@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/longest-common-subsequence/description/
+
+class Solution {
+    public int longestCommonSubsequence(String text1, String text2) {
+
+       return recursion(text1,text2);     
+    }
+    int recursion(String text1,String text2){
+        if ("".equals(text1)||("".equals(text2)))
+        return 0;
+        if(text1.charAt(0)==text2.charAt(0))
+        return 1+recursion(text1.substring(1,text1.length()),text2.substring(1,text2.length()));
+        else
+       return  Math.max(recursion(text1.substring(1,text1.length()),text2.substring(0,text2.length())),
+        recursion(text1.substring(0,text1.length()),text2.substring(1,text2.length())));
+    }
+}
