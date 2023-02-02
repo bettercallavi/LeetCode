@@ -1,1 +1,23 @@
+// https://leetcode.com/problems/maximum-subarray/solutions/
+
+//brute force n square 
+
+class Solution {
+    int sum=Integer.MIN_VALUE;
+    public int maxSubArray(int[] nums) {
+       int l=nums.length;
+       if(l==1)
+       return nums[0];
+       for(int i=0;i<l;i++){
+          int s=0; 
+         for(int j=i;j<l;j++){
+             s+=nums[j];
+             sum=Math.max(sum,s);
+          } 
+       } 
+       return sum;
+    }
+}
+
+// O(n) kadane algorithm 
 
