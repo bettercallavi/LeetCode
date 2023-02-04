@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/search-a-2d-matrix/submissions/
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int t) {
+        int m=matrix.length-1;
+        int n=matrix[0].length-1;
+         for(int i=m;i>=0;i--){
+             for(int j=n;j>=0;j--){
+                if(t<=matrix[i][j] && (i==0 || t>matrix[i-1][j])){
+                    System.out.println(matrix[i][j]);
+                    if(t==matrix[i][j])
+                      return true;
+                }
+                else
+                 break;
+             }
+         }
+         return false;
+    }
+
+}
