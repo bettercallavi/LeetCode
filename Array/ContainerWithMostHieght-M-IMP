@@ -1,4 +1,5 @@
-//
+//https://leetcode.com/problems/container-with-most-water/description/
+//https://www.youtube.com/watch?v=ZHQg07n_tbg&t=667s
 
 class Solution {
     int ans=0;
