@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/next-permutation/description/
+//https://leetcode.com/problems/next-permutation/solutions/3133449/simple-o-n-java-solution-with-explanation-and-example/
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int ind1=-1,ind2=-1;
+        
+        //find the index of the first number that is lesser than it's next
+        for(int i=nums.length-1;i>=1;i--){    
+            if(nums[i-1]<nums[i]){
+                ind1=i-1;
+                break;
+            }
+        }
+        
+         //if such a number exists, for a lexicographical order, find the number immediately bigger than it
+        if(ind1!=-1){
+            for(int i=nums.length-1;i>0;i--){
+            if(nums[i]>nums[ind1]){
+                ind2=i;
+                break;
+            }
+        } 
+        //perform a swap of the two numbers
+        int temp=nums[ind1];
+        nums[ind1]=nums[ind2];
+        nums[ind2]=temp;
+        }   
+     //reverse the order after the break point(ind1) to ensure the lexicographical order
+    for(int i=ind1+1,j=nums.length-1;i<j;i++,j--){ 
+           int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+            }
+}       
+}
