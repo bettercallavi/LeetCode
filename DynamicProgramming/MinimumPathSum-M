@@ -34,11 +34,11 @@ class Solution {
         int rows = grid.length;
         int columns = grid[0].length;
         
-        // First row
+        // First row sum
         for (int i = 1; i < columns; i++) {
             grid[0][i] += grid[0][i-1];
         }
-        // First column
+        // First column sum 
         for (int j = 1; j < rows; j++) {
             grid[j][0] += grid[j-1][0];
         }
