@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+
+class Solution {
+    public int maxDepth(TreeNode root) {
+       return  find(root);
+    }
+
+    int  find(TreeNode node){
+       if(node==null){
+         return 0;
+       }
+       return Math.max(find(node.left),find(node.right))+1;
+    }
+}
