@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/longest-consecutive-sequence/description/
 class Solution {
     public int longestConsecutive(int[] nums) {
         Set<Integer> set=new HashSet<>();
