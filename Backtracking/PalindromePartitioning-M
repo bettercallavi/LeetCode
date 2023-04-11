@@ -9,7 +9,7 @@ class Solution {
     }
 
     void dfs(int start, List<List<String>> result, List<String> currentList, String s) {
-        if (start >= s.length()) result.add(new ArrayList<String>(currentList));
+        if (start == s.length()) result.add(new ArrayList<String>(currentList));
         for (int end = start; end < s.length(); end++) {
             if (isPalindrome(s, start, end)) {
                 // add current substring in the currentList
