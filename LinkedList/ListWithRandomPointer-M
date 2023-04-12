@@ -14,11 +14,11 @@ class Solution {
       head=root;
        for(Map.Entry<Node,Node> entry : map.entrySet()){
          entry.getValue().random=map.get(entry.getKey().random);
-       }
-      for(Map.Entry<Node,Node> entry : map.entrySet()){
          entry.getValue().next=map.get(entry.getKey().next);
        }
       return map.get(head);
+    }}
+
 
 //######################################################################################################################################
 /second way is using o(1) extra space 
