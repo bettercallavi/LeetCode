@@ -3,27 +3,24 @@
 
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-      ListNode slow=head;
-      ListNode fast=head;
-      if (head == null || head.next == null) 
+        ListNode slow=head;
+        ListNode fast=head;
+         if (head == null || head.next == null) 
             return null;
-      slow = slow.next; 
-        fast = fast.next.next; 
-  
-      while(slow!=null && fast!=null && fast.next!=null){
-        if(slow==fast)
-          return get(slow,head);
-        slow=slow.next;
-        fast=fast.next.next;
-      }
-      return null;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast)
+            break;
+        }
+        //inrease one from start and one from point where slow fast was same ,they will meet at cycle start point 
+       ListNode temp =head;
+        while(slow!=null){
+            if(slow==temp)
+            return slow;
+            slow=slow.next;
+            temp=temp.next;
+        }
+        return null;
     }
-  public ListNode get(ListNode node,ListNode head){
-    System.out.println(node.val);
-    while(head!=node){
-      node=node.next;
-      head=head.next;
-    }
-    return node;
-  }
 }
