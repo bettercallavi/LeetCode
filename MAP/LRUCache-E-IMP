@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/lru-cache/description/
-
+// method can be public ,protected but private,default  are not allowed 
 
 class LRUCache {
     LinkedHashMap<Integer,Integer> map;
