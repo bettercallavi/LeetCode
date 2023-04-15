@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/sort-list/description/
+
+class Solution {
+    public ListNode sortList(ListNode head) {
+        List<Integer> ans=new ArrayList<>();
+        while(head!=null){
+            ans.add(head.val);
+            head=head.next;
+        }
+        Collections.sort(ans);
+        ListNode dummy = new ListNode(0);
+        ListNode temp=dummy;
+        for(int x:ans){
+            ListNode temp2=new ListNode(x);
+            temp.next=temp2;
+            temp=temp2;
+        }
+        return dummy.next;
+    }
+}
