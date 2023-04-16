@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/binary-tree-right-side-view/submissions/
+
+
+class Solution {
+    List<Integer> list;
+    public List<Integer> rightSideView(TreeNode root) {
+         list=new ArrayList<>();
+         side(root,0);
+         return list;
+    }
+    void side(TreeNode node,int h){
+       if(node==null)return;
+       if(list.size()==h)
+       list.add(node.val);
+         side(node.right,h+1);
+         side(node.left,h+1);
+    }
+}
