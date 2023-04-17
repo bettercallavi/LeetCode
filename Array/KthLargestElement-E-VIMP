@@ -1,5 +1,6 @@
 //https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 //approch 2 - create a max heap and remove k element 
+// another way to solve is by quick select method https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> pq=new PriorityQueue<Integer>();
