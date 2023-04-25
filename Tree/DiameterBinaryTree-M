@@ -3,3 +3,18 @@
 //we ca not get left height and right height and add ,beacause The diameter of a binary tree is the length of the longest path between any two nodes 
 //so diameter can be found without root node 
 
+
+ class Solution {
+    int dia=0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        ht(root);
+        return dia;
+    }
+    public int ht(TreeNode root ){
+        if(root == null) return 0;
+        int lh = ht(root.left);
+        int rh = ht(root.right);
+        dia = Math.max(dia,lh+rh);  
+        return 1 + Math.max(lh,rh);
+    }
+}
