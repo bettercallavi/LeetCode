@@ -1,0 +1,5 @@
+//https://leetcode.com/problems/diameter-of-binary-tree/description/
+
+//we can tget left height and right height and add ,beacause The diameter of a binary tree is the length of the longest path between any two nodes 
+//so diameter can be found without root node 
+
