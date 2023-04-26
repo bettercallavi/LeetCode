@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/permutation-in-string/description/
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+      if(s2.length()<s1.length())
+        return false;
+        int m=s1.length();
+        int n=s2.length();
+        int c1[]=new int[26];
+        int c2[]=new int[26];
+        for(int i=0;i<m;i++){
+          c1[s1.charAt(i)-'a']++;
+          c2[s2.charAt(i)-'a']++;
+        }
+        //sliding window dececrease by one char from front ,increase from end 
+        int f=0;
+        if(Arrays.equals(c1,c2))
+         return true;
+        for(int i=m;i<n;i++){
+          c2[s2.charAt(f++)-'a']--;
+          c2[s2.charAt(i)-'a']++;
+          if(Arrays.equals(c1,c2))
+         return true;
+        }
+        return false;
+    }
+}
