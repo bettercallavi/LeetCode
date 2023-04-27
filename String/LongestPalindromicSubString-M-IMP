@@ -6,8 +6,10 @@ class Solution {
     int end=0;
         if(s==null || s.length()<1)return "";
         for(int i=0;i<s.length();i++){
-         int l1=findSubString(s,i,i);
-         int l2=findSubString(s,i,i+1);
+
+  //palindrome can be even length or odd length,from each index of string we need to check if it is middle of pelindrome     
+         int l1=findSubString(s,i,i);    //odd palindrome check 
+         int l2=findSubString(s,i,i+1);  //even palindrome check 
           int l=Math.max(l1,l2);
             if(l>end-start){
              start=i-(l-1)/2;
@@ -22,7 +24,7 @@ class Solution {
         i--;
         j++;
     }   
-        //i and j will always come incrased by 2 due to last run so minus 1 is needed 
+        //i and j will always come increased by 2 due to last run so minus 1 is needed 
         return j-i-1;
   }
 }
