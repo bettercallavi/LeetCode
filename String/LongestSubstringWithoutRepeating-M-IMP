@@ -25,18 +25,19 @@ class Solution {
 }
 
 // example---abbcda ,ans bcda //dvdf ---ans vdf
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         Map<Character,Integer> map=new HashMap<>();
-      int count=0;
-      int i=0;
+        if(s.length()==1)return 1;
+      int count=0; //final answer length
+      int i=0; //hold index no for last occurence of a character 
       for(int j=0;j<s.length();j++){
         if(map.containsKey(s.charAt(j))){
-          i=Math.max(i,map.get(s.charAt(j)));
-          // System.out.println(i);
+          i=Math.max(i,map.get(s.charAt(j))); //get index of last occurence of duplicate character 
         }
-        count=Math.max(count,j-i+1);
-        map.put(s.charAt(j),j+1);
+        count=Math.max(count,j-i+1); //max of prev longest and new 
+        map.put(s.charAt(j),j+1); //update last occurence of character index always
       }
       return count;
     }
