@@ -1,7 +1,7 @@
 //https://leetcode.com/problems/permutations/
 //https://leetcode.com/problems/permutations-ii/  //sililar problem
 //permute 2 solution will work for permute 1 also ,no changes is required 
-
+//https://www.youtube.com/watch?v=R3Sm9V2OSCo
 class Solution {
      List<List<Integer>> list;
     public List<List<Integer>> permute(int[] nums) {
