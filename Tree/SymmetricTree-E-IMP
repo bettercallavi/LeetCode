@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/symmetric-tree/description/
+//
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+     return check(root,root);   
+    }
+   boolean check(TreeNode nodel,TreeNode noder){
+        if(nodel==null && noder==null)
+         return true;
+      if(nodel==null || noder==null)
+        return false;
+         if(nodel.val!=noder.val)
+        return false;
+
+        return check(nodel.right,noder.left) && check(nodel.left,noder.right);
+    }
+}
