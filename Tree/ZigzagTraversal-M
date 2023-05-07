@@ -1,43 +1,32 @@
 //https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 //
 
+//same as level order traversal ,but for zigzag added a flag and adding in begining if flag is false
 class Solution {
-  List<List<Integer>> list;
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        list=new ArrayList<>();
-       traverse(root);
-      return list;
-    }
-    void traverse(TreeNode node){
-       Stack<TreeNode> current=new Stack<>();
-       Stack<TreeNode> nextLevel=new Stack<>();
-       current.add(node);
-      boolean flag=false;
-      
-        while(!current.isEmpty()){
-           int count=current.size();
-           List tempList=new ArrayList();
-          while(count-->0){
-               TreeNode  temp=current.pop();
-            if(temp!=null){
-               tempList.add(temp.val);
-              if(flag){
-                 nextLevel.add(temp.right);
-                 nextLevel.add(temp.left);
-              }else{
-                  nextLevel.add(temp.left);
-                  nextLevel.add(temp.right);
-                }
-            }
-          }
-          if(tempList.size()>0)
-          list.add(tempList);
-          flag=flag? false:true;
-           Stack<TreeNode> temp=current;
-            current=nextLevel;
-            nextLevel=temp;
+        List<List<Integer>> ans=new ArrayList<>();
+         if(root == null){
+            return ans;
         }
-
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        boolean flag=true;
+        while(!q.isEmpty()){
+            List<Integer> list=new ArrayList<>();
+            int size=q.size();
+            while(size-->0){
+                TreeNode node=q.poll();
+                if(flag)
+                list.add(node.val);
+                else
+                list.add(0,node.val);
+                if(node.left!=null)q.add(node.left);
+                if(node.right!=null)q.add(node.right);
+            }
+            ans.add(list);
+            flag=!flag;
+        }
+        return ans;
     }
 }
 
