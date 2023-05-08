@@ -45,11 +45,11 @@ class Solution {
 //######################################################################################################################################
 /second way is using o(1) extra space 
    // create a new node after each node. which is our deep copy
- // list will become twice the size
+ // 1. list will become twice the size
  // Now we have all new nodes, list is twice the size now. 
- // Assign the random nodes properly. 
+ // 2. Assign the random nodes properly. 
 // now we have randoms for new list assigned well. 
- // create a new list and break it up
+ // 3. create a new list and break it up
  // total 3 iteration needed to complete .
  
  class Solution {
