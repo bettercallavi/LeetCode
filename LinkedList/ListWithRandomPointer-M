@@ -19,7 +19,29 @@ class Solution {
       return map.get(head);
     }}
 
+//same as above ,insted od entry iteration we are doing here linkedList iteration 
+class Solution {
+    public Node copyRandomList(Node head) {
+        Map<Node,Node> map=new HashMap<>();
 
+    Node oldHead=head;
+        while(oldHead!=null){
+             Node newHead=new Node(oldHead.val);
+             map.put(oldHead,newHead);
+            oldHead=oldHead.next;
+        }        
+         Node tempOld=head;
+         Node tempNew=map.get(head);
+        while(tempNew!=null){
+           tempNew.random=map.get(tempOld.random);
+            tempNew.next=map.get(tempOld.next);  
+           tempOld=tempOld.next;
+           tempNew=tempNew.next;
+        }
+
+     return map.get(head);
+    }
+}
 //######################################################################################################################################
 /second way is using o(1) extra space 
    // create a new node after each node. which is our deep copy
