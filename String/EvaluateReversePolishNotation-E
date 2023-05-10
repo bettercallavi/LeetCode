@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+
+
+ 
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack=new Stack();
+        String op="+-/*";
+        for(String s:tokens){
+            if(!op.contains(s))
+           stack.push(Integer.parseInt(s));
+           else{
+               int a=stack.pop();
+               int b=stack.pop();
+             switch(s){
+                 case "+":
+                        stack.push(a + b);
+                        break;
+                    //case 1:
+                    case "-":
+                        stack.push(b - a);
+                        break;
+                    //case 2:
+                    case "*":
+                        stack.push(a * b);
+                        break;
+                    //case 3:
+                    case "/":
+                        stack.push(b / a);
+                        break;
+             }  
+           }
+        }
+        return stack.pop();
+    }
+}
