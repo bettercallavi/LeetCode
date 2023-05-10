@@ -18,3 +18,69 @@ class Solution {
         return dummy.next;
     }
 }
+
+// as per question space complexity should be o(1).So we need to use mergeSort here although above approch is better 
+
+
+
+
+    // Sorting Algorithm O(nLogn) w/ merge sort
+    class Solution {
+    public ListNode sortList(ListNode head) {
+        return mergeSort(head);
+    }
+    
+    private ListNode mergeSort(ListNode head){
+		// base case
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode middle = getMiddle(head); //O(n)
+        ListNode middleNext = middle.next;
+		// disconnect and separate the left list and right list
+        middle.next = null;
+        // merge sort first list
+        ListNode rightList = mergeSort(head); // O(logn)* n
+        // merge sort second list
+        ListNode leftList = mergeSort(middleNext); // O(logn) * n
+        // merge both lists
+        ListNode mergedList = merge(rightList, leftList);
+        return mergedList;
+    }
+    
+    private ListNode merge(ListNode rightList, ListNode leftList){
+        ListNode result = null;
+        
+        if(rightList == null){
+            return leftList;
+        }
+        if(leftList == null){
+            return rightList;
+        }
+        
+		// store smallest value into result list
+        if(rightList.val <= leftList.val){
+            result = rightList;
+			// increment right list
+            result.next = merge(rightList.next, leftList);
+        }else{
+            result = leftList;
+			// increment left list
+            result.next = merge(rightList, leftList.next);
+        }
+        return result;
+    }
+    
+    private ListNode getMiddle(ListNode node){
+        ListNode slow = node;
+        ListNode fast = node;
+        
+        
+        // as fast steps twice as many as slow, fast will reach the end as slow reaches the middle
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+}
