@@ -1,6 +1,7 @@
 //https://leetcode.com/problems/course-schedule/
 //https://leetcode.com/problems/course-schedule/discuss/658351/Java-DFS-Concise-O(V-%2B-E)
 // if any child visiting parent again there is a cycle 
+//https://www.youtube.com/watch?v=EgI5nU9etnU&t=328s
 
 class Solution {
      List<List<Integer>> list=null;
@@ -8,19 +9,25 @@ class Solution {
     public boolean canFinish(int numCourses, int[][] p) {
           visited=new int[numCourses]; 
            list=new ArrayList<>(numCourses);
+
+// adding all dependent in a list 
          for(int i=0;i<numCourses;i++)
            list.add(new ArrayList<>());
-        
            for(int j=0;j<p.length;j++){
-               list.get(p[j][1]).add(p[j][0]);
+               list.get(p[j][0]).add(p[j][1]);
            }
-         // System.out.println(list.get(0));
-   for (int i = 0; i < numCourses; i++) if (hasCycle(i)) return false; 
+         System.out.println(list.get(0));
+
+//now check cycle
+   for (int i = 0; i < numCourses; i++)
+    if (hasCycle(i)) return false; 
         return true;
     }
+
     boolean hasCycle(int u){
+      System.out.println(Arrays.toString(visited));
          if (visited[u] == 2) return false;
-          if (visited[u] == 1) return true; 
+         if (visited[u] == 1) return true; 
          visited[u] = 1;
         for (int v : list.get(u))  {
              if (hasCycle(v)) return true;   
