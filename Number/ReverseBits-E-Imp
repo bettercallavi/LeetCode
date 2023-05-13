@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/reverse-bits/description/
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int ans=0;
+        //as integer is of 32 bit 
+        for(int i=0;i<32;i++){
+           ans<<=1; //This effectively adds a 0 to the end of the binary representation of rev.//moving ans to left 
+           int temp =n&1; //this gives us last bit of number 
+           ans|=temp;  //or operator set first bit of answer 
+           n>>=1;     //moving to second last bit of number 
+        }
+        return ans;
+    }
+}
