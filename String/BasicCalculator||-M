@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/basic-calculator-ii/description/
+
+
+class Solution {
+    public int calculate(String s) {
+        Stack<Integer> stack = new Stack<>();
+        int curNum = 0;
+        char op = '+';
+        for (int i = 0; i < s.length(); i++) {
+            char chr = s.charAt(i);
+            if (Character.isDigit(chr)) 
+            curNum = curNum * 10 + (chr-'0');
+
+            if (!Character.isDigit(chr) && chr != ' ' || s.length()-1 == i) {
+                if (op == '-') stack.push(-curNum);
+                else if (op == '+') stack.push(curNum); 
+                else if (op == '*') stack.push(stack.pop()*curNum); //current operand will be processed in next loop.
+                else if (op == '/') stack.push(stack.pop()/curNum);
+                op = chr;
+                curNum = 0;
+            }}
+        int res = 0;
+        while (!stack.empty()){
+          int temp=stack.pop(); 
+          res +=temp; 
+        } 
+        return res;
+    }}
