@@ -1,14 +1,17 @@
 //https://leetcode.com/problems/product-of-array-except-self/
 //https://www.youtube.com/watch?v=gREVHiZjXeQ
 
+
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int res[]=new int[nums.length];
         res[0]=1;
+        // first ireration mutiple all left side element 
         for(int i=1;i<nums.length;i++){
            res[i]=res[i-1]*nums[i-1];
         }
         int p=1;
+        //second ireration multiply all right side element 
         for(int i=nums.length-1;i>=0;i--){
            res[i]=res[i]*p;
            p=p*nums[i];
