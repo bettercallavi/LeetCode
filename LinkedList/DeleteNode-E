@@ -10,6 +10,5 @@ class Solution {
         node.val = nextNode.val;
         // Step 3
         node.next = nextNode.next;
-        nextNode.next = null;
     }
 }
