@@ -2,7 +2,7 @@
 //https://www.youtube.com/watch?v=dfIqLxAf-8s
 //The size of the array is at least N+1 with N integer. It means if we start from item at index 0, all the N+1 items from index 0 to index N will be visited.
 //The number we want to find will be visited at least twice, which makes the existence of cycle a definite!
-
+//it will be solved same as we solve cycle in linked list ;
 
 class Solution {
     public int findDuplicate(int[] nums) {
