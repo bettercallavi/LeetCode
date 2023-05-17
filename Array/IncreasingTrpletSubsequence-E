@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/increasing-triplet-subsequence/description/
+//https://youtu.be/90tYQ5jNVPo
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int n=nums.length;
+      int first=Integer.MAX_VALUE;
+      int mid=Integer.MAX_VALUE;
+     for(int i=0;i<n;i++){
+       if(nums[i]>mid)return true;
+       else if(nums[i]>first && nums[i]<mid)mid=nums[i];
+       else if(nums[i]<first)first=nums[i];   
+     } 
+     return false;
+    }
+}
