@@ -18,7 +18,7 @@ class Solution {
               while(j<end && count[c[j]-'a']<k)// these 2 line just for performance 
               j++;                             // line 2 
 
-             return Math.max(helper(c,start,i,k),helper(c,j,end,k)); //devide it into 2 parts ,remove in between char with less than k count 
+             return Math.max(helper(c,start,i,k),helper(c,j,end,k)); //divide it into 2 parts ,remove in between char with less than k count 
              }
         }
         return end-start;
