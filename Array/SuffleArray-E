@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/shuffle-an-array/
+
+class Solution {
+
+    private List<Integer> original;
+    private List<Integer> shuffled;
+    int[] nums;
+    public Solution(int[] nums) {
+        original = new ArrayList<Integer>();
+       
+        original.addAll(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+        shuffled = new ArrayList<Integer>(original);
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return original.stream().mapToInt(Integer::intValue).toArray();
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        Collections.shuffle(shuffled);
+        return shuffled.stream().mapToInt(Integer::intValue).toArray();
+    }
+}
