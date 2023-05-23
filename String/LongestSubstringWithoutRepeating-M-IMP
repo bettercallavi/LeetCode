@@ -1,44 +1,22 @@
 //https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
-
-## not good ,brute force ,if found repeating break loop 
-
-class Solution {
-    int ans=0;
-    public int lengthOfLongestSubstring(String s) {
-        for(int i=0;i<s.length();i++){
-              String temp="";
-            for(int j=i;j<s.length();j++){
-                if(temp.indexOf(s.charAt(j))!=-1){
-                //System.out.println(temp);
-                
-                break;
-                }
-                else{
-                 temp+=s.charAt(j);
-                }
-                ans=Math.max(ans,temp.length());
-          }
-     }
-       return ans;
-    }
-}
-
-// example---abbcda ,ans bcda //dvdf ---ans vdf
-
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        Map<Character,Integer> map=new HashMap<>();
-        if(s.length()==1)return 1;
-      int count=0; //final answer length
-      int i=0; //hold index no for last occurence of a character 
-      for(int j=0;j<s.length();j++){
-        if(map.containsKey(s.charAt(j))){
-          i=Math.max(i,map.get(s.charAt(j))); //get index of last occurence of duplicate character 
+     if( s.length() ==0 ) return 0;
+        int maxLength = Integer.MIN_VALUE;
+        Map< Character , Integer> m = new HashMap<>();
+        
+        int st=0,end = 0;
+        while( end < s.length()){
+            char c = s.charAt(end);
+            if( m.containsKey(c) ){
+                if( m.get(c) >= st)st = m.get(c)+1;                              
+            }
+                m.put( c, end);               
+            maxLength = Math.max( end-st+1, maxLength);
+            end++;    
+
         }
-        count=Math.max(count,j-i+1); //max of prev longest and new 
-        map.put(s.charAt(j),j+1); //update last occurence of character index always
-      }
-      return count;
+        return  maxLength;
     }
 }
