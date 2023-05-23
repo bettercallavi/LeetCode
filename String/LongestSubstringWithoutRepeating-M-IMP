@@ -10,7 +10,7 @@ class Solution {
         while( end < s.length()){
             char c = s.charAt(end);
             if( m.containsKey(c) ){
-                if( m.get(c) >= st)st = m.get(c)+1;                              
+                if( m.get(c) >= st)st = m.get(c)+1; //we have to take next index of start                        
             }
                 m.put( c, end);               
             maxLength = Math.max( end-st+1, maxLength);
