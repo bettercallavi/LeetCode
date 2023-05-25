@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/next-permutation/description/
 //https://leetcode.com/problems/next-permutation/solutions/3133449/simple-o-n-java-solution-with-explanation-and-example/
-
+// 3 step approch--find smaller than next 2>swap with first large 3>reverse all element after pivot 
 class Solution {
     public void nextPermutation(int[] nums) {
         int ind1=-1,ind2=-1;
