@@ -27,6 +27,7 @@ class Solution {
         nums[ind2]=temp;
         }   
      //reverse the order after the break point(ind1) to ensure the lexicographical order
+     //reverse is needed as all  element are greater than break point .97542 will be converted into 24579 
     for(int i=ind1+1,j=nums.length-1;i<j;i++,j--){ 
            int temp=nums[i];
         nums[i]=nums[j];
