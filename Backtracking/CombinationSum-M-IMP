@@ -2,14 +2,15 @@
 
 
 class Solution {
+    List<List<Integer>> ans;
     public List<List<Integer>> combinationSum(int[] c, int target) {
-        List<List<Integer>> ans=new ArrayList<>();
+        ans=new ArrayList<>();
       List<Integer> temp=new ArrayList<>();
       int sum=0;
-      getSum(c,target,ans,temp,sum,0);
+      getSum(c,target,temp,sum,0);
       return ans;
     }
-   void getSum(int[] c,int target, List<List<Integer>> ans,List<Integer> temp,int sum,int start){
+   void getSum(int[] c,int target,List<Integer> temp,int sum,int start){
      if(sum==target){
        ans.add(new ArrayList<>(temp));
       return;
@@ -21,7 +22,7 @@ class Solution {
            continue;
          }else{
           temp.add(c[i]);
-           getSum(c,target,ans,temp,sum,i);
+           getSum(c,target,temp,sum,i);
            temp.remove(temp.size()-1);
            sum-=c[i];
          }
