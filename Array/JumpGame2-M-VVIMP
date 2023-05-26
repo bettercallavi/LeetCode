@@ -7,7 +7,7 @@
             int curEnd = 0, curFar = 0;
             
             for (int i = 0; i < n - 1; ++i) {
-                curFar = Math.max(curFar, i + nums[i]); //checking all combination here 
+                curFar = Math.max(curFar, i + nums[i]); //checking all combination before prv jump point
                 if (i == curEnd) { //i checked above all combination before jumping again
                     answer++;
                     curEnd = curFar;
