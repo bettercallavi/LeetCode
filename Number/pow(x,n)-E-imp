@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/powx-n/description/
+class Solution {
+    public double myPow(double x, int n1) {
+        double ans=1.0;
+        long temp=n1;
+        long n=n1;
+        if(n<0)n=-1*n;  //making n +ve always
+        while(n>0){
+          if(n%2==1){ //if n is odd
+              ans*=x;
+              n-=1;
+          }
+          else{
+              x=x*x; //if n even 
+              n=n/2;
+          }
+        }
+     if(temp<0)ans=(double)(1.0)/(double)(ans); //if power is -ve 
+    return ans;
+    }
+}
