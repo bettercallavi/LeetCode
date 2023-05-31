@@ -1,4 +1,6 @@
 //https://leetcode.com/problems/search-a-2d-matrix/submissions/
+//solution ditto same as https://leetcode.com/problems/search-a-2d-matrix-ii/description/
+//no diff
 
 class Solution {
     
