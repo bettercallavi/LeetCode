@@ -1,0 +1,53 @@
+
+
+//https://leetcode.com/problems/word-break/
+//....time limit exceeded  ..
+
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+      return  word(s,wordDict,0);
+    }
+  public boolean word(String s, List<String> wordDict,int start){
+     StringBuilder sb=new StringBuilder();
+     if(start==s.length())
+       return true;
+     for(int i=start;i<s.length();i++){
+        sb.append(s.charAt(i));
+      //  System.out.println(sb);
+           if(wordDict.contains(sb.toString())){
+             if(word(s,wordDict,i+1))
+             return true ;
+             }
+     }
+   
+    return false;
+   }
+}
+
+
+//...............better solution .......
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        return dfs(s, wordDict, new HashSet<String>());
+    }
+    
+    public boolean dfs(String s, List<String> wordDict, Set<String> set) {
+        if (set.contains(s)) {//set is only used to avoid TLE 
+            return false; 
+        }
+        if (s.length() == 0) {
+            return true;
+        }
+        for (String word: wordDict) {
+            if (s.startsWith(word)) {
+                if (dfs(s.substring(word.length()), wordDict, set)) {
+                    return true;
+                }
+                set.add(s); //set contains string not found
+            }
+        }
+        return false;
+    } 
+}
