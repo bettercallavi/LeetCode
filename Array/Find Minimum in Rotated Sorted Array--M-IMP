@@ -28,27 +28,25 @@ and the tail pointer is pointed to the min.
 */
 
 
+
 class Solution {
     public int findMin(int[] nums) {
         int n=nums.length;
-         int min=nums[n-1];
+         int min=nums[0];
      if(nums[0]<nums[n-1])
          return nums[0];
-        
-         int hptr=0;
-         int tptr=n-1;
-         int mptr;
-         while(hptr<tptr){
-            mptr=hptr+(tptr-hptr)/2;
-            if(nums[mptr]>nums[hptr]){
-                hptr=mptr;
+         int low=0;
+         int high=n-1;
+         int mid;
+         while(low<high){
+            mid=low+(high-low)/2;
+            if(nums[mid]>nums[low]){
+                low=mid;
             }else{
-                tptr=mptr;
-                min=Math.min(min,nums[mptr]);
+                high=mid;
+                min=Math.min(min,nums[mid]);
             }  
          }
-     
   return min;        
-}
-    
-}
+}    
+}    
