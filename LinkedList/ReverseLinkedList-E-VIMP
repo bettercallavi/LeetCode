@@ -1,0 +1,14 @@
+// not from leetcode 
+
+static Node  rev(Node node){
+        Node current=node;
+        Node prv=null;
+        Node next;
+        while(current!=null){
+            next=current.next;
+            current.next=prv;
+             prv=current;
+            current=next;
+        }
+        return prv;
+        }
