@@ -1,4 +1,5 @@
-// not from leetcode 
+// not from leetcode 1->2->3->4
+//store the next in begining only ,later u will loose 
 
 static Node  rev(Node node){
         Node current=node;
