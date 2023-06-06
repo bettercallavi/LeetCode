@@ -2,6 +2,8 @@
 //approch 1 - create a max heap and remove k element 
 // approch 2- sort then get kth 
 // approch 3- solve is by quick select method https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+//n+n/2+n/4=2n--------->so time complexity is o(n)
+
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> pq=new PriorityQueue<Integer>();
