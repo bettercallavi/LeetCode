@@ -27,34 +27,27 @@ class Solution {
     }
 }
 
-//quick select best solution 
+//quick select best solution https://www.youtube.com/watch?v=XEmy13g1Qxc&t=654s
 
 class Solution {
-   public int findKthLargest(int[] nums, int k) {
-	return quickSelect(nums, 0, nums.length-1, nums.length-k);
+	int k=0;
+public int findKthLargest(int[] nums, int k) {
+	k=nums.length-k;
+  return quickSelect(nums, 0, nums.length - 1, k);
 }
 
-private int quickSelect(int[] nums, int left, int right, int k) {
-	if (left == right) return nums[left];
-
-	int pIndex = new Random().nextInt(right - left + 1) + left;
-	pIndex = partition(nums, left, right, pIndex);
-
-	if (pIndex == k) return nums[k];
-	else if (pIndex < k) return quickSelect(nums, pIndex+1, right, k);
-	return quickSelect(nums, left, pIndex-1, k);
-}
-
-private int partition(int[] nums, int left, int right, int pIndex) {
-	int pivot = nums[pIndex];
-	swap(nums, pIndex, right);
-	pIndex = left;
-
-	for (int i=left; i<=right; i++) 
-		if (nums[i] <= pivot) 
-			swap(nums, i, pIndex++);
-
-	return pIndex - 1;
+int quickSelect(int[] nums, int low, int high, int k) {
+  int pivot = nums[high];
+  int p=low;
+  for (int i = low; i < high; i++) {
+    if (nums[i] <= pivot) {
+      swap(nums, p++, i);
+    }
+  }
+  swap(nums, p, high);
+  if (p == k) return nums[p];
+  if (p > k) return quickSelect(nums, low, p - 1,k);
+  return quickSelect(nums, p + 1, high,k);
 }
 
 private void swap(int[] nums, int x, int y) {
@@ -63,4 +56,3 @@ private void swap(int[] nums, int x, int y) {
 	nums[y] = temp;
 }
 }
-
