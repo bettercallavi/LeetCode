@@ -40,7 +40,7 @@ int quickSelect(int[] nums, int low, int high, int k) {
   int pivot = nums[high];
   int p=low;
   for (int i = low; i < high; i++) {
-    if (nums[i] <= pivot) {
+    if (nums[i] < pivot) {
       swap(nums, p++, i);
     }}
   swap(nums, p, high);
