@@ -1,107 +1,36 @@
 //https://leetcode.com/problems/decode-string/
 
-
 class Solution {
-    /* The idea is to recursively decode substrings */
-	public String decodeString(String s) {
-		return decodeHelper(s, 0);
-	}
+    public String decodeString(String s) {
+        Stack<Integer> is = new Stack<>(); //only number push here 
+        Stack<StringBuilder> ss = new Stack<>();
 
-	private String decodeHelper(final String s, int k) {
-		/*
-		 * base case - if the string contains no [ ] then we can just return it
-		 * multiplied by k
-		 */
-		if ( ! s.contains("[")) {
-			return repeat(s, k);
-		}
+        int n = s.length(), num = 0;
+        StringBuilder str = new StringBuilder();
 
-		final StringBuilder sb = new StringBuilder();
+        for(char ch : s.toCharArray()) {
+            // There will be 4 types of characters --> number, [ , ], character
 
-		int index = 0;
-		while (index < s.length()) {
+            if(ch >= '0' && ch <= '9') {
+                num = (num * 10) + ch - '0';
+            } else if(ch == '[') {
+                ss.push(str);
+                str = new StringBuilder();
 
-			char ch = s.charAt(index);
+                is.push(num);
+                num = 0;
+            } else if(ch == ']') {
+                StringBuilder temp = str;
+                str = ss.pop();
+                int count = is.pop();
 
-			if (Character.isDigit(ch)) {
-
-				int num = 0;
-				/* K can be greater than 1 digit so we need to get all the digits */
-				while (Character.isDigit(ch)) {
-					index++;
-					num = num * 10 + ch - '0';
-					ch = s.charAt(index);
-				}
-
-				/*
-				 * get the substring between brackets starting at one index after the last digit
-				 */
-				final String substringBetween = substringBetween(s, index);
-				final String decoded = decodeHelper(substringBetween, num);
-
-				/*
-				 * move the index after the last bracket of this substring here +2 is for the
-				 * two brackets -> [ ]
-				 */
-				index += substringBetween.length() + 2;
-				sb.append(decoded);
-
-			} else {
-				sb.append(ch);
-				index++;
-			}
-
-		}
-
-		/*
-		 * return the string repeated by k times this also takes care of decoding the
-		 * string in recursive calls
-		 */
-		return repeat(sb.toString(), k);
-	}
-
-	/* repeat the string k times */
-	private String repeat(final String s, int k) {
-		if (k == 0)
-			return s;
-
-		final StringBuilder sb = new StringBuilder();
-
-		while (k-- > 0) {
-			sb.append(s);
-		}
-
-		return sb.toString();
-	}
-
-	/* extract the substring between [ ] */
-	private String substringBetween(final String s, int start) {
-
-		int index = start;
-		int open = 0;
-		int close = 0;
-		boolean balanced = false;
-
-		/* search for the inner substring */
-		while ( ! balanced) {
-
-			final char ch = s.charAt(index++);
-
-			if (ch == '[')
-				open++;
-			else if (ch == ']')
-				close++;
-
-			if (open == close)
-				balanced = true;
-		}
-
-		/* return only the inner substring without the [ ] */
-		/*
-		 * index - 1 here because in the loop we will go beyond the last closing bracket
-		 * so we need to move back one char
-		 */
-		return s.substring(start + 1, index - 1);
-	}
-
+                while(count-- > 0) {
+                    str.append(temp);
+                }
+            } else {
+                str.append(ch);
+            }
+        }
+        return str.toString();
+    }
 }
