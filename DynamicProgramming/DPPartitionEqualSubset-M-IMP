@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/partition-equal-subset-sum/
 //https://www.youtube.com/watch?v=s6FhG--P7z0&t=28s
-
+//similar to coin change problem 
 class Solution {
     public boolean canPartition(int[] nums) {
         int n=nums.length;
