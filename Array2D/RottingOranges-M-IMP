@@ -68,3 +68,77 @@ class Solution {
         }
     }
 }
+//solution 2 --- without queue we can solve but time complexity will be more 
+
+class Solution {
+  int r;
+  int c;
+    public int orangesRotting(int[][] grid) 
+       {
+        boolean changed = false;
+        int no = 2; //starting with 2 is needed as rotten has value of 2 in first iteration then 3then 4 then next
+        r=grid.length;
+         c=grid[0].length;
+
+        while (true) {
+            for (int i = 0; i < r; i++) {
+                for (int j = 0; j < c; j++) {
+
+                    // Rot all other oranges present at
+                    // (i+1, j), (i, j-1), (i, j+1), (i-1,
+                    // j)
+                    if (grid[i][j] == no) {
+                        if (issafe(i + 1, j)
+                                && grid[i + 1][j] == 1) {
+                            grid[i + 1][j] = grid[i][j] + 1;
+                            changed = true;
+                        }
+                        if (issafe(i, j + 1)
+                                && grid[i][j + 1] == 1) {
+                            grid[i][j + 1] = grid[i][j] + 1;
+                            changed = true;
+                        }
+                        if (issafe(i - 1, j)
+                                && grid[i - 1][j] == 1) {
+                            grid[i - 1][j] = grid[i][j] + 1;
+                            changed = true;
+                        }
+                        if (issafe(i, j - 1)
+                                && grid[i][j - 1] == 1) {
+                            grid[i][j - 1] = grid[i][j] + 1;
+                            changed = true;
+                        }
+                    }
+                }
+            }
+
+            // If no rotten orange found it means all
+            // oranges rottened now
+            if (!changed)
+                break;
+
+            changed = false;
+            no++;
+        }
+// If any orange is found to be
+// not rotten then ans is not possible
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (grid[i][j] == 1)
+                    return -1;
+            }
+        }
+
+        // Because initial value for a rotten
+        // orange was 2
+        return no - 2;
+    }
+    
+
+    boolean issafe(int i,int j){
+         if(i<0 || i>=r || j<0 || j>=c)
+         return false;
+         return true;
+        }
+
+}
