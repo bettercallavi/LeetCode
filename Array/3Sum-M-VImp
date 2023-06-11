@@ -1,9 +1,8 @@
 //https://leetcode.com/problems/3sum/
 
-
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-            Set<List<Integer>> ans=new HashSet<>();
+            Set<List<Integer>> ans=new HashSet<>(); //not arrayList as nums can have duplicate element .
         Arrays.sort(nums);
          for(int i=0;i<nums.length-2;i++){
             int s=i+1;
@@ -18,7 +17,7 @@ class Solution {
             }
         else
            s++;      
-         }}
+         }
+         }
     return new ArrayList(ans);
     }}
-
