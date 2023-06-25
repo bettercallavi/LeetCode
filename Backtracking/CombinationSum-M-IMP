@@ -10,22 +10,22 @@ class Solution {
       getSum(c,target,temp,sum,0);
       return ans;
     }
-   void getSum(int[] c,int target,List<Integer> temp,int sum,int start){
+
+    void getSum(int[] c,int target,List<Integer> temp,int sum,int start){
      if(sum==target){
-       ans.add(new ArrayList<>(temp));
-      return;
-       }
-       for(int i=start;i<c.length;i++){
-         sum+=c[i];
-         if(sum>target){
-           sum-=c[i];
-           continue;
-         }else{
-          temp.add(c[i]);
-           getSum(c,target,temp,sum,i);
-           temp.remove(temp.size()-1);
-           sum-=c[i];
-         }
+     ans.add(new ArrayList<>(temp));
+     return;
      }
-   }
+     for(int i=start;i<c.length;i++){
+      sum+=c[i];
+      if(sum>target){
+        sum-=c[i];
+        continue;     
+      }
+      temp.add(c[i]);
+      getSum(c,target,temp,sum,i);
+      temp.remove(temp.size()-1);
+       sum-=c[i];
+     }  
+}
 }
