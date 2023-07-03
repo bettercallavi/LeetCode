@@ -3,18 +3,18 @@
 //solution is same as jump game 2
 
 
+
 class Solution {
     public boolean canJump(int[] nums) {
         int nextJump=0;
         int prvJump=0;
-       for(int i=0;i<nums.length;i++){
+       for(int i=0;i<nums.length-1;i++){
           nextJump=Math.max(nextJump,i+nums[i]);
-          if(prvJump==i){
-              prvJump=nextJump;
-              nextJump=0;
-          }
-       }   
-       if(prvJump>=nums.length-1)return true;
-       return false;  
+        if(i==prvJump){
+            prvJump=nextJump;
+        }
+        }
+      if(prvJump>=nums.length-1)return true;
+       return false; 
     }
 }
