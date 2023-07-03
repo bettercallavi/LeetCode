@@ -1,5 +1,7 @@
 //https://leetcode.com/problems/jump-game-ii/description/
 //https://www.youtube.com/watch?v=a9r98S-pDvk
+//https://leetcode.com/problems/jump-game/description/
+//solution is same as jump game 1
 
 class Solution {
     public int jump(int[] a) {
