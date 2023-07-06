@@ -1,15 +1,17 @@
-// not from leetcode 1->2->3->4
+//https://leetcode.com/problems/reverse-linked-list/description/?envType=study-plan-v2&envId=top-100-liked
 //store the next in begining only ,later u will loose 
 
-static Node  rev(Node node){
-        Node current=node;
-        Node prv=null;
-        Node next;
-        while(current!=null){
-            next=current.next;
-            current.next=prv;
-             prv=current;
-            current=next;
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        
+        ListNode cur=head;
+        ListNode prv=null;
+        while(cur!=null){
+            ListNode temp=cur.next;
+            cur.next=prv;
+             prv=cur;
+            cur=temp;
         }
         return prv;
-        }
+    }
+}
