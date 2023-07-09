@@ -1,6 +1,10 @@
 //https://leetcode.com/problems/number-of-matching-subsequences/
 //similer easy problem 
 //https://leetcode.com/problems/is-subsequence/?envType=study-plan-v2&envId=leetcode-75
+//similer medium problem 
+//https://leetcode.com/problems/longest-common-subsequence/description/
+
+
 class Solution {
      Set<String> set;
     public int numMatchingSubseq(String S, String[] words) {
