@@ -1,5 +1,8 @@
 //https://leetcode.com/problems/longest-common-subsequence/description/
-
+//similer medium  problem 
+//https://leetcode.com/problems/number-of-matching-subsequences/
+//similer easy problem 
+//https://leetcode.com/problems/is-subsequence/?envType=study-plan-v2&envId=leetcode-75
 
 class Solution {
     public int longestCommonSubsequence(String text1, String text2) {
