@@ -1,5 +1,8 @@
 //https://leetcode.com/problems/is-subsequence/description/
-
+// somplete similer medium problem 
+//https://leetcode.com/problems/number-of-matching-subsequences/
+//similer medium problem 
+//https://leetcode.com/problems/longest-common-subsequence/description/
 
 class Solution {
     public boolean isSubsequence(String s, String t) {
