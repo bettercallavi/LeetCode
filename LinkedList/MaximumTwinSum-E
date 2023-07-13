@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/description/
+class Solution {
+    public int pairSum(ListNode head) {
+        ListNode node=head;
+        int l=0;
+        while(node!=null){
+            l++;
+            node=node.next;
+        }
+        int a[]=new int[l];
+         node=head;
+         int k=0;
+         while(node!=null){
+            a[k++]=node.val;
+            node=node.next;
+        }
+        int sum=Integer.MIN_VALUE;
+        for(int i=0,j=l-1;i<j;i++,j--){
+          sum=Math.max(sum,a[i]+a[j]);
+        }
+        return sum;
+    }
+}
