@@ -1,5 +1,4 @@
 //https://leetcode.com/problems/symmetric-tree/description/
-//
 
 class Solution {
     public boolean isSymmetric(TreeNode root) {
