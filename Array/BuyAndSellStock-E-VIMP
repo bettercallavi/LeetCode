@@ -12,6 +12,7 @@ class Solution {
         return ans;
     }
 }
+//#################################################################################################################
 //same approch but written slight differently 
 class Solution {
     public int maxProfit(int[] prices) {
