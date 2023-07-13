@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/maximum-binary-tree/
+class Solution {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+    return construct(nums,0,nums.length-1);  
+    }
+     TreeNode construct(int[] nums,int start,int end){
+        if(start>end){   
+         return null;   
+        }
+       int index=max(nums,start,end);
+      TreeNode  treeNode=new TreeNode(nums[index]);      
+        treeNode.left=construct(nums,start,index-1); 
+        treeNode.right=construct(nums,index+1, end);    
+      return treeNode;
+     }    
+    int max(int[] nums,int start ,int end){
+        int index=start;
+        for(int i=start;i<=end;i++){
+         if(nums[index]<nums[i]){
+            index=i;
+         }
+        }
+        return index;
+    }   
+}
