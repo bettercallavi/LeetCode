@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/?envType=study-plan-v2&envId=leetcode-75
+class Solution {
+    int count =0;
+    public int goodNodes(TreeNode root) {
+        count(root,root.val);
+        return count;
+    }
+    void count(TreeNode node,int max){
+        if(node==null)
+           return ;
+        if(max<=node.val)
+        count++;
+      count(node.left,Math.max(node.val,max));
+      count(node.right,Math.max(node.val,max));  
+    }
+}
