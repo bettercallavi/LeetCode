@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/number-of-provinces/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution {
+    public int findCircleNum(int[][] c) {
+        boolean visited[]=new boolean[c.length];
+        int count = 0;
+        for(int i=0;i<c.length;i++){
+          if(!visited[i]){
+              count++;
+              dfs(c,i,visited);
+          }
+        }
+        return count;
+    }
+    private void dfs(int[][] c, int province, boolean[] visited) {
+     visited[province] = true; 
+     for (int neighbor = 0; neighbor < c[province].length; neighbor++) {
+         if(c[province][neighbor]==1 && !visited[neighbor]){
+             dfs(c,neighbor,visited); 
+         }
+    }
+    }
+        
+}
