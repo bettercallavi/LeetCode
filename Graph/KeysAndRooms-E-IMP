@@ -4,16 +4,16 @@ class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
       int n = rooms.size();
         boolean[] visited = new boolean[n];
-        int ans = helper(rooms, visited, 0,n);
+        int ans = helper(rooms, visited, 0);
         return ans == n;
     }
-     public int helper(List<List<Integer>> rooms, boolean[] visited, int curr, int n) {
+     public int helper(List<List<Integer>> rooms, boolean[] visited, int curr) {
          if(visited[curr])
          return 0;
          visited[curr]=true;
          int ans=1;
          for(int i=0;i<rooms.get(curr).size();i++){
-                 ans += helper(rooms, visited,rooms.get(curr).get(i) ,n);
+                 ans += helper(rooms, visited,rooms.get(curr).get(i));
          } 
          return ans;
      }
