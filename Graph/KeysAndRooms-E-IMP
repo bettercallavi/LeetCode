@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/keys-and-rooms/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+      int n = rooms.size();
+        boolean[] visited = new boolean[n];
+        int ans = helper(rooms, visited, 0,n);
+        return ans == n;
+    }
+     public int helper(List<List<Integer>> rooms, boolean[] visited, int curr, int n) {
+         if(visited[curr])
+         return 0;
+         visited[curr]=true;
+         int ans=1;
+         for(int i=0;i<rooms.get(curr).size();i++){
+                 ans += helper(rooms, visited,rooms.get(curr).get(i) ,n);
+         } 
+         return ans;
+     }
+}
+// using queue ,both beats  100% ,below is easy to undertand 
+
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        boolean[] visited = new boolean[rooms.size()];
+
+        visited[0] = true;
+        for(int i: rooms.get(0)) {
+            queue.add(i);
+            visited[i] = true;
+        }
+
+        while(!queue.isEmpty()) {
+            int temp = queue.poll();
+            for(int i: rooms.get(temp)) {
+                if(visited[i] == false) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+
+        for(int i = 1; i < visited.length; i++) {
+            if(visited[i] == false) return false;
+        }
+        return true;
+    }
+}
