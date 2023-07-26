@@ -8,7 +8,7 @@ class Solution {
      adj.add(new ArrayList<>());
     }
      for(int i=0;i<n-1;i++){
-     adj.get(c[i][0]).add(c[i][1]);
+     adj.get(c[i][0]).add(c[i][1]);    //creating adjeceny matrix 
      adj.get(c[i][1]).add(-c[i][0]);
     }
     Queue<Integer> q= new LinkedList<>();
