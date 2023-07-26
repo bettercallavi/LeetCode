@@ -1,32 +1,32 @@
 //https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/?envType=study-plan-v2&envId=leetcode-75
 
 class Solution {
-    public int minReorder(int n, int[][] connections) {
-        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
-        for(int i=0;i<n;i++){
-            adj.add(new ArrayList<>());
-        }
+    public int minReorder(int n, int[][] c) {
+    List<List<Integer>> adj=new ArrayList<>();
 
-        for(int i=0;i<connections.length;i++){
-            adj.get(connections[i][0]).add(connections[i][1]);
-            adj.get(connections[i][1]).add(-connections[i][0]);
-        }
-//System.out.println(adj);
-        int visit[]=new int[n];
-        Queue<Integer>q=new LinkedList<>();
-        q.add(0);
-        visit[0]=1;
-        int count=0;
-        while(!q.isEmpty()){
-            int node=q.poll();
-            for(int e:adj.get(Math.abs(node))){
-                if(visit[Math.abs(e)]==0){
-                    visit[Math.abs(e)]=1;
-                    q.add(e);
-                    if(e>0) count++;
-                }
-            }
-        }
-        return count;
+    for(int i=0;i<n;i++){
+     adj.add(new ArrayList<>());
+    }
+     for(int i=0;i<n-1;i++){
+     adj.get(c[i][0]).add(c[i][1]);
+     adj.get(c[i][1]).add(-c[i][0]);
+    }
+    Queue<Integer> q= new LinkedList<>();
+    q.add(0);
+    int count =0;
+    boolean visited[]=new boolean[n];
+    visited[0]=true;
+    while(!q.isEmpty()){
+       int x=q.poll();
+       for(int e:adj.get(Math.abs(x))){
+       if(!visited[Math.abs(e)]){
+           visited[Math.abs(e)]=true;
+           q.add(e);
+           if(e>0)
+           count++;
+         }
+       }
+    }
+    return count;
     }
 }
