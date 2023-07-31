@@ -9,10 +9,10 @@ class Solution {
       long ans=0;
       int j=costs.length-1;
       while(k-->0){
-          while(p1.size()<candidates && i <= j){
+          while(p1.size()<candidates && i <= j){ //at i=j either this one will be executed 
               p1.add(costs[i++]);
           }
-           while(p2.size()<candidates && i <= j){
+           while(p2.size()<candidates && i <= j){ // or this one will be executed 
               p2.add(costs[j--]);
           }
 
