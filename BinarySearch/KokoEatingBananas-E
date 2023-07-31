@@ -1,23 +1,24 @@
 //https://leetcode.com/problems/koko-eating-bananas/description/?envType=study-plan-v2&envId=leetcode-75
 //find maximum value in piles ,minimum we will start k=1 ,we will use binary search fo find answer
+
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
-        int low=1;
-        int high=Integer.MIN_VALUE;
+        int s=1;
+        int e=Integer.MIN_VALUE;
         for(int i=0;i<piles.length;i++){
-            high=Math.max(high,piles[i]);
+            e=Math.max(e,piles[i]);
         }
-        while(low<high){
-            int mid=low+(high-low)/2;
-            if(blackbox(mid,piles,h)){
-                high=mid;
+        while(s<e){
+            int mid=s+(e-s)/2;
+            if(isPossible(mid,piles,h)){
+                e=mid;
             }
             else
-                low=mid+1;
+            s=mid+1;
         }
-        return low;
+        return s;
     }
-    public boolean blackbox(int maxpiles,int[] piles,int h){
+    public boolean isPossible(int maxpiles,int[] piles,int h){
         int hours=0;
         for(int i:piles){
             hours+=Math.ceil((double)i/(double)maxpiles);
