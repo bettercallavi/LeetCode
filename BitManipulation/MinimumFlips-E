@@ -2,7 +2,7 @@
 //in order to make 0 from 1 OR 1 ,we need to make both 1 as 0 , so 2 oeration is required 
 
 class Solution {
-public:
+
     int minFlips(int a, int b, int c) {
         int flips = 0;
         while (a > 0 || b > 0 || c > 0) {
@@ -25,4 +25,4 @@ public:
 
         return flips;
     }
-};
+}
