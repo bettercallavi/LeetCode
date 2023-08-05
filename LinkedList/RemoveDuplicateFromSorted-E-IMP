@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/?envType=study-plan-v2&envId=top-interview-150
+
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode newNode=new ListNode();
+        ListNode ans=newNode;
+        ListNode node=head;
+        while(node!=null){
+        boolean dup=false;
+        while(node.next!=null && node.next.val==node.val){
+          node=node.next;
+          dup=true;
+         }
+            if(!dup){
+                newNode.next=new ListNode(node.val);
+                newNode=newNode.next; 
+            }
+         node=node.next;
+        }
+        return ans.next;
+    }
+}
+
+//##################################with comments same solution ########################################
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        // Create a new LikedList that will contain our final answer in .next
+        ListNode newList = new ListNode();
+        // Create a copy of the head of the new LinkedList
+        ListNode newListHead = newList;
+
+        // Iterate over the list
+        while(head != null){
+            // Keep track of whether or not we moved over a chunk of duplicated
+            boolean wentOverAChunk = false;
+            // This while loop jumps over the chunk of duplicated
+            while(head.next != null && head.next.val == head.val){
+                head = head.next;
+                wentOverAChunk = true; // Set to true if we encountered duplicates
+            }
+            // If we haven't encountered duplicates, add a copy of the node to the newList
+            if(!wentOverAChunk){
+                newList.next = new ListNode(head.val);
+                newList = newList.next;
+            }
+            System.out.println(head.val);
+            head = head.next;
+        }
+        return newListHead.next;
+    }
+}
