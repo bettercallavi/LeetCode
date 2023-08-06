@@ -18,7 +18,7 @@ class Solution {
             }
         }
         // Recursively build the left and right subtrees
-        int leftSize = rootIndex - is;  //size of array in left of rooot 
+        int leftSize = rootIndex - is;  //size of array in left of root 
         int rightSize = ie - rootIndex;  //size of array to right of array 
         root.left = build(inorder, is, rootIndex - 1, postorder, ps, ps + leftSize - 1); // as left then right then root in postorder 
         root.right = build(inorder, rootIndex + 1, ie, postorder, pe - rightSize, pe - 1);
