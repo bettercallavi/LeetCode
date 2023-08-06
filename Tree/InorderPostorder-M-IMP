@@ -1,9 +1,9 @@
 //https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/?envType=study-plan-v2&envId=top-interview-150
 //https://www.youtube.com/watch?v=s5XRtcud35E
-
 class Solution {
-    public TreeNode buildTree(int[] inorder, int[] postorder)
+    public TreeNode buildTree(int[] inorder, int[] postorder){
         return build(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
+    }
     private TreeNode build(int[] inorder, int is, int ie, int[] postorder, int ps, int pe) {
         if (is > ie || ps > pe) 
             return null;
@@ -24,3 +24,4 @@ class Solution {
         root.right = build(inorder, rootIndex + 1, ie, postorder, pe - rightSize, pe - 1);
         return root;
 }}
+
