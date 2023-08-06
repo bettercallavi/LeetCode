@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/
-
+//not perfect binary question https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/description/?envType=study-plan-v2&envId=top-interview-150
 class Solution {
     public Node connect(Node root) {
         if(root == null) return null;
@@ -13,5 +13,32 @@ class Solution {
         connect(root.left);
         connect(root.right);
         return root;  
+    }
+}
+// can be solved by using queue ,it will work for both perfect binary and any binary tree 
+
+class Solution {
+    public Node connect(Node root) {
+          if(root == null){
+            return null;
+        }
+        Queue<Node> q=new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while(!q.isEmpty()){
+          Node curr=q.poll();
+          if(curr==null){
+          if(q.isEmpty())break;
+          else q.add(null);
+          }
+          else
+          { curr.next=q.peek();
+          if(curr.left!=null)
+           q.add(curr.left);
+            if(curr.right!=null)
+           q.add(curr.right);
+         }
+        }
+        return root;
     }
 }
