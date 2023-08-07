@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/course-schedule-ii/description/?envType=study-plan-v2&envId=top-interview-150
+//similer easy problem https://leetcode.com/problems/course-schedule/
+
+//same solution as curse schedule 1 ,slight modification 
+
+class Solution {
+  List<List<Integer>> list;
+  int visited[];
+  List<Integer> ans;
+    public int[] findOrder(int numCourses, int[][] p) {
+         visited=new int[numCourses]; 
+           list=new ArrayList<>(numCourses);
+          for(int i=0;i<numCourses;i++)
+           list.add(new ArrayList<>());
+           ans=new ArrayList<>();
+           
+         for(int i=0;i<p.length;i++){
+            list.get(p[i][0]).add(p[i][1]);
+         }
+        for(int i=0;i<numCourses;i++){
+            if(hasCycle(i)){
+              ans.clear();
+              break;
+            }
+         }  
+         return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+    boolean hasCycle(int u){
+       if(visited[u]==2)return false;
+        if(visited[u]==1)return true;
+        visited[u]=1;
+        for(int v:list.get(u)){
+          if(hasCycle(v))
+           return true;
+        }
+       ans.add(Integer.valueOf(u));
+        visited[u]=2;
+        return false;
+    }
+}
