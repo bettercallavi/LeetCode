@@ -1,7 +1,6 @@
 //https://leetcode.com/problems/coin-change/
 //https://www.youtube.com/watch?v=Y0ZqKpToTic
 // https://practice.geeksforgeeks.org/problems/coin-change/0   #related problem
-// both solution will for for test case coint=[2],amount=5
 
 
 class Solution {
