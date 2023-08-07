@@ -2,7 +2,7 @@
 //https://leetcode.com/problems/course-schedule/discuss/658351/Java-DFS-Concise-O(V-%2B-E)
 // if any child visiting parent again there is a cycle 
 //https://www.youtube.com/watch?v=EgI5nU9etnU&t=328s
-
+//similer question https://leetcode.com/problems/course-schedule-ii/?envType=study-plan-v2&envId=top-interview-150
 class Solution {
      List<List<Integer>> list=null;
      int visited[];
