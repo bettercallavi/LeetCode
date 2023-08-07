@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/coin-change-ii/description/
+//similer problem https://leetcode.com/problems/coin-change/
 class Solution {
     public int change(int amount, int[] coins) {
         int[] arr = new int[amount + 1];
