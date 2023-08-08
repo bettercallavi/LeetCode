@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/maximum-sum-circular-subarray/description/?envType=study-plan-v2&envId=top-interview-150
+//with explanation 
+class Solution {
+    public int maxSubarraySumCircular(int[] nums) {
+        // we compute the maximum subarray sum using kadane's algo
+        int maxSubarraySum = kadane(nums);
+        // we find total sum of the array
+        int totalSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            totalSum += nums[i];
+            // at each iteration we invert the signs
+            // because it'll help us find min subarray sum
+            nums[i] = -nums[i]; 
+        }
+
+        // now we compute min subarray sum
+        // as we had inverted the signs of every number, 
+        // so actually we will internally compute max subarray sum again (with inverted signs)
+        // so we invert the result's sign to convert the max to min
+        int minSubarraySum = -kadane(nums);
+        // if all the numbers in array are negative, this condition would be hit
+        // so we return maxSubarraySum which will be the maximum element in the array
+        // say in [-1,-2,-3], maxSubarraySum would be -1 
+        // while totalSum as well as minSubarraySum would be -6
+        if (totalSum == minSubarraySum) {
+            return maxSubarraySum;
+        }
+
+        // we now calculate the max cicrular subarray sum
+        int maxCircularSubarraySum = totalSum - minSubarraySum;
+        // we return whichever is greater out of them
+        // might be possible that our normal subarray sum is greater
+        // so we return the max out of normal subarray sum and circular subarray sum
+        return Math.max(maxSubarraySum, maxCircularSubarraySum);
+    }
+
+    // this method implements kadane's algorithm to implement maximum subarray sum
+    // (LeetCode 53: Maximum Subarray)
+    private int kadane(int[] a) {
+        int sum = 0, maxSum = Integer.MIN_VALUE;
+        for (int n : a) {
+            sum += n;
+            if (sum > maxSum) maxSum = sum;
+            if (sum < 0) sum = 0;
+        }
+
+        return maxSum;
+    }
+}
+
+// TC: O(3 * n) => O(n)
+// SC: O(1)
