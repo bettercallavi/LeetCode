@@ -31,19 +31,11 @@ class Solution {
 
 class Solution {
     public String reverseWords(String s) {
-        // Trim the input string to remove leading and trailing spaces
-        String[] str = s.trim().split("\\s+");
-
-        // Initialize the output string
-        String out = "";
-
-        // Iterate through the words in reverse order
-        for (int i = str.length - 1; i > 0; i--) {
-            // Append the current word and a space to the output
-            out += str[i] + " ";
+        String a[]=s.trim().split("\\s+");
+        StringBuilder sb=new StringBuilder();
+        for(int i=a.length-1;i>=0;i--){
+            sb.append(a[i]+" ");
         }
-
-        // Append the first word to the output (without trailing space)
-        return out + str[0];
+        return sb.substring(0,sb.length()-1).toString();
     }
 }
