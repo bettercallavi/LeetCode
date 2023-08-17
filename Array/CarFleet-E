@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/car-fleet/description/
+
+class Solution {
+
+    public int carFleet(int t, int[] p, int[] s) {
+        if (p.length == 1) return 1;
+        int[][] ps = new int[p.length][2];
+        for (int i = 0; i < p.length; i++) {
+            ps[i][0] = p[i];
+            ps[i][1] = s[i];
+        }
+
+        Arrays.sort(ps,(a,b)->a[0]-b[0]);
+        double prvTime=0.0;
+        int count=0;
+        for (int i = ps.length - 1; i >= 0; i--) {
+            double currTime = (double) (t - ps[i][0]) / ps[i][1];//time taken to reach target
+            if (currTime > prvTime) {//A car can never pass another car ahead of it
+               count++;
+               prvTime=currTime;
+            } 
+        }
+        return count;
+    }
+}
