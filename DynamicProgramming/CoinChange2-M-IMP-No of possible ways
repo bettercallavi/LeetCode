@@ -2,14 +2,17 @@
 //similer problem https://leetcode.com/problems/coin-change/
 class Solution {
     public int change(int amount, int[] coins) {
-        int[] arr = new int[amount + 1];
-        Arrays.fill(arr, 0);
-        arr[0] = 1;
-        for (int c : coins)
-            for (int i = c; i <= amount; i++){
-                arr[i] += arr[i - c];
-                System.out.println(Arrays.toString(arr));
+        
+        int dp[] = new int[amount+1];
+        int i,j;
+        int c = coins.length;
+        dp[0] = 1;
+        for(i=0;i<c;i++){
+            for(j=coins[i] ; j<=amount ; j++){
+                dp[j] += dp[j - coins[i]];
             }
-        return arr[amount];
+        }
+        
+        return dp[amount];
     }
 }
