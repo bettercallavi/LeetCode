@@ -2,17 +2,17 @@
 
 class Solution {
     public int numSquares(int n) {
-        int a[]=new int[n+1];
-      for(int i=0;i<=n;i++){
+     int a[]=new int[n+1];
+      for(int i=0;i<=n;i++)
           a[i]=i;
-         }
+          
         int s=2;
       while(s*s<=n){
-      for(int i=1;i<=n;i++){
-         int div=i/(s*s);
-         int rem=i%(s*s);
-         a[i]=Math.min(a[i],div+a[rem]);
-         }
+        for(int i=1;i<=n;i++){
+           int div=i/(s*s);
+           int rem=i%(s*s);
+             a[i]=Math.min(a[i],div+a[rem]);
+        }
         s+=1;
       }
       return a[n];
