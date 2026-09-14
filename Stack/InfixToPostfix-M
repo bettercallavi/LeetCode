@@ -1,5 +1,6 @@
 //https://www.youtube.com/watch?v=PAceaOSnxQs
 
+precedence and associativity
 ()=L to R 
 ^=R to L 
 /*=L to R 
