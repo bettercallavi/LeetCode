@@ -1,0 +1,8 @@
+//https://www.youtube.com/watch?v=8QxlrRws9OI
+
+()=L to R 
+^=R to L 
+/*=L to R 
++- =L to R 
+
+when L to R = push on the stack opposite of what was heppening in postfix 
