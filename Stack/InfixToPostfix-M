@@ -6,5 +6,5 @@ precedence and associativity
 /*=L to R 
 +- =L to R 
 
-precedence is high ,push into stack ,precedence is low pop from stack then push new operator 
+precedence is high ,push into stack ,precedence is low pop from stack then push new operator  -rule is same in prefix and postfix 
 when L to R = pop from stack 
