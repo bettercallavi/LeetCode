@@ -1,0 +1,17 @@
+master theoram for dividing funtion 
+𝑇(𝑛) = 𝑎𝑇(𝑛/𝑏)+ O(n^k 𝑙𝑜𝑔^p n) 
+a) a < b^k : if p < 0, then T(n) = O(n^k)
+             if p ≥ 0, then T(n) = O(n^k 𝑙𝑜𝑔^𝑝 n) 
+			 
+b) a = b^k : if p < -1, then T(n) = O(n^k) 	
+             if p = -1, then T(n) = O(n^k log log n)
+             if p > -1, then T(n) = O(n^k 𝑙𝑜𝑔𝑝+1 n)
+              
+					 
+c) a > b^k : T(n) = O(𝑛^𝑙𝑜𝑔𝑏𝑎)
+-------------------------------------------------------
+Master Theorem for Decreasing Functions 
+𝑇(𝑛) = 𝑎𝑇(𝑛−𝑏)+ O(n^k) 
+a) a < 1 : T(n) = O(n^k) 
+b) a = 1 : T(n) = O(n^(k+1)) 
+c) a > 1 : T(n) = O(𝑛^𝑘 𝑎^(𝑛/𝑏))
